@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nos Tarifs | OBDExpress</title>
+  <meta name="description" content="Découvrez nos tarifs pour le diagnostic automobile à domicile sur la Côte d'Azur. Prix transparents et sans surprise." />
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    .tarifs-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    
+    .tarifs-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .tarifs-header h1 {
+      color: #0066cc;
+      margin-bottom: 1rem;
+    }
+    
+    .pricing-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 3rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    .pricing-table th {
+      background-color: #0066cc;
+      color: white;
+      padding: 1.5rem;
+      text-align: left;
+    }
+    
+    .pricing-table td {
+      padding: 1.5rem;
+      border-bottom: 1px solid #e9ecef;
+    }
+    
+    .pricing-table tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .pricing-table tr:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+    
+    .pricing-table tr:hover {
+      background-color: #e9ecef;
+    }
+    
+    .price {
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    
+    .book-btn {
+      display: inline-block;
+      background-color: #0066cc;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+    }
+    
+    .book-btn:hover {
+      background-color: #0052a3;
+    }
+    
+    .zone-pricing {
+      margin-top: 4rem;
+    }
+    
+    .zone-pricing h2 {
+      color: #0066cc;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    
+    .zones-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .zone-card {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .zone-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .zone-card h3 {
+      color: #0066cc;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e9ecef;
+      padding-bottom: 0.5rem;
+    }
+    
+    .zone-price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 1rem 0;
+    }
+    
+    .zone-cities {
+      margin-top: 1rem;
+    }
+    
+    .zone-cities ul {
+      padding-left: 1.5rem;
+      margin: 0.5rem 0;
+    }
+    
+    .zone-cities li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .zone-cta {
+      display: inline-block;
+      background-color: #0066cc;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 500;
+      margin-top: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    
+    .zone-cta:hover {
+      background-color: #0052a3;
+    }
+    
+    .faq-section {
+      margin-top: 4rem;
+      background-color: #f8f9fa;
+      padding: 3rem 2rem;
+      border-radius: 8px;
+    }
+    
+    .faq-section h2 {
+      color: #0066cc;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    .faq-item {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid #e9ecef;
+      padding-bottom: 1.5rem;
+    }
+    
+    .faq-item:last-child {
+      margin-bottom: 0;
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    
+    .faq-question {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+    
+    .faq-answer {
+      color: #555;
+    }
+    
+    @media (max-width: 768px) {
+      .pricing-table th, .pricing-table td {
+        padding: 1rem;
+      }
+      
+      .zones-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>OBDExpress</h1>
+    <p>Diagnostic auto à domicile - Côte d'Azur</p>
+    <nav>
+      <ul>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/zones-intervention">Zones desservies</a></li>
+        <li><a href="/carte">Carte</a></li>
+        <li><a href="/tarifs" class="active">Tarifs</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="tarifs-container">
+      <div class="tarifs-header">
+        <h1>Nos Tarifs</h1>
+        <p>Des prix clairs et transparents pour tous nos services de diagnostic automobile à domicile.</p>
+      </div>
+      
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Description</th>
+            <th>Tarif</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Diagnostic Complet</td>
+            <td>Lecture et effacement des codes défaut, diagnostic multimarque</td>
+            <td class="price">À partir de 99€</td>
+            <td><a href="/payment/checkout?service=Diagnostic%20Complet" class="book-btn">Réserver</a></td>
+          </tr>
+          <tr>
+            <td>Pré-Contrôle Technique</td>
+            <td>Diagnostic complet avant contrôle technique</td>
+            <td class="price">À partir de 119€</td>
+            <td><a href="/payment/checkout?service=Pr%C3%A9-Contr%C3%B4le%20Technique" class="book-btn">Réserver</a></td>
+          </tr>
+          <tr>
+            <td>Diagnostic Spécifique</td>
+            <td>Analyse d'un problème particulier (voyant moteur, ABS, airbag...)</td>
+            <td class="price">À partir de 129€</td>
+            <td><a href="/payment/checkout?service=Diagnostic%20Sp%C3%A9cifique" class="book-btn">Réserver</a></td>
+          </tr>
+          <tr>
+            <td>Diagnostic Électronique</td>
+            <td>Analyse des systèmes électroniques complexes</td>
+            <td class="price">À partir de 149€</td>
+            <td><a href="/payment/checkout?service=Diagnostic%20%C3%89lectronique" class="book-btn">Réserver</a></td>
+          </tr>
+          <tr>
+            <td>Diagnostic Véhicule d'Occasion</td>
+            <td>Inspection complète avant achat d'un véhicule d'occasion</td>
+            <td class="price">À partir de 179€</td>
+            <td><a href="/payment/checkout?service=Diagnostic%20V%C3%A9hicule%20d%27Occasion" class="book-btn">Réserver</a></td>
+          </tr>
+          <tr>
+            <td>Forfait Entreprise</td>
+            <td>Solutions adaptées aux entreprises avec flotte de véhicules</td>
+            <td class="price">Sur devis</td>
+            <td><a href="/#contact" class="book-btn">Contacter</a></td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <div class="zone-pricing">
+        <h2>Tarifs par zone géographique</h2>
+        <div class="zones-grid">
+          <div class="zone-card">
+            <h3>Zone 1 - Tarif Standard</h3>
+            <div class="zone-price">99€</div>
+            <p>Intervention à domicile dans les villes suivantes :</p>
+            <div class="zone-cities">
+              <ul>
+                <li><a href="/diagnostic-auto/antibes">Antibes</a></li>
+                <li>Juan-les-Pins</li>
+                <li>Golfe-Juan</li>
+              </ul>
+            </div>
+            <a href="/zones-intervention" class="zone-cta">Voir sur la carte</a>
+          </div>
+          
+          <div class="zone-card">
+            <h3>Zone 2 - Tarif Intermédiaire</h3>
+            <div class="zone-price">109€</div>
+            <p>Intervention à domicile dans les villes suivantes :</p>
+            <div class="zone-cities">
+              <ul>
+                <li><a href="/diagnostic-auto/cannes">Cannes</a></li>
+                <li><a href="/diagnostic-auto/cagnes-sur-mer">Cagnes-sur-Mer</a></li>
+                <li><a href="/diagnostic-auto/vallauris">Vallauris</a></li>
+                <li><a href="/diagnostic-auto/biot">Biot</a></li>
+              </ul>
+            </div>
+            <a href="/zones-intervention" class="zone-cta">Voir sur la carte</a>
+          </div>
+          
+          <div class="zone-card">
+            <h3>Zone 3 - Tarif Étendu</h3>
+            <div class="zone-price">129€</div>
+            <p>Intervention à domicile dans les villes suivantes :</p>
+            <div class="zone-cities">
+              <ul>
+                <li>Nice</li>
+                <li>Mougins</li>
+                <li>Valbonne</li>
+                <li>Villeneuve-Loubet</li>
+              </ul>
+            </div>
+            <a href="/zones-intervention" class="zone-cta">Voir sur la carte</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="faq-section">
+        <h2>Questions fréquentes sur nos tarifs</h2>
+        
+        <div class="faq-item">
+          <div class="faq-question">Les prix incluent-ils le déplacement ?</div>
+          <div class="faq-answer">Oui, tous nos tarifs incluent le déplacement à votre domicile dans la zone géographique indiquée. Aucun frais supplémentaire ne sera demandé.</div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">Comment se passe le paiement ?</div>
+          <div class="faq-answer">Vous pouvez payer en ligne par carte bancaire via Stripe ou PayPal lors de votre réservation. Nous acceptons également les paiements en espèces ou par chèque lors de l'intervention.</div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">Y a-t-il des frais supplémentaires ?</div>
+          <div class="faq-answer">Non, le prix affiché est le prix final. Nous n'appliquons pas de frais cachés ou supplémentaires. Si votre véhicule nécessite des interventions additionnelles, nous vous en informerons toujours avant de procéder.</div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">Proposez-vous des remises pour plusieurs véhicules ?</div>
+          <div class="faq-answer">Oui, nous proposons des tarifs dégressifs pour le diagnostic de plusieurs véhicules à la même adresse. Contactez-nous pour obtenir un devis personnalisé.</div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">Ma ville n'est pas listée, pouvez-vous quand même intervenir ?</div>
+          <div class="faq-answer">Nous intervenons sur toute la Côte d'Azur. Si votre ville n'est pas listée, contactez-nous et nous vous indiquerons si nous pouvons vous dépanner et à quel tarif.</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>OBDExpress</h3>
+          <p>Diagnostic automobile à domicile sur la Côte d'Azur</p>
+        </div>
+        <div class="footer-section">
+          <h3>Zones principales</h3>
+          <ul>
+            <li><a href="/diagnostic-auto/antibes">Antibes</a></li>
+            <li><a href="/diagnostic-auto/cannes">Cannes</a></li>
+            <li><a href="/diagnostic-auto/cagnes-sur-mer">Cagnes-sur-Mer</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p>Tél : 06 00 00 00 00</p>
+          <p>Email : contact@obdexpress.fr</p>
+        </div>
+      </div>
+      <p class="copyright">&copy; <%= new Date().getFullYear() %> OBDExpress - Tous droits réservés</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nos Services | OBDExpress</title>
+  <meta name="description" content="Découvrez nos services de diagnostic automobile à domicile sur la Côte d'Azur. Lecture et effacement des codes défaut, diagnostic multimarque." />
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    .services-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    
+    .services-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .services-header h1 {
+      color: #0066cc;
+      margin-bottom: 1rem;
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .service-card {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .service-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .service-content {
+      padding: 1.5rem;
+    }
+    
+    .service-content h3 {
+      color: #0066cc;
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+    
+    .service-content p {
+      margin-bottom: 1.5rem;
+      color: #555;
+    }
+    
+    .service-price {
+      font-weight: bold;
+      color: #333;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .service-cta {
+      display: inline-block;
+      background-color: #0066cc;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+    }
+    
+    .service-cta:hover {
+      background-color: #0052a3;
+    }
+    
+    .why-choose-us {
+      margin-top: 4rem;
+      padding: 3rem 0;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+    }
+    
+    .why-choose-us h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #0066cc;
+    }
+    
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 0 2rem;
+    }
+    
+    .benefit-item {
+      text-align: center;
+    }
+    
+    .benefit-icon {
+      font-size: 2.5rem;
+      color: #0066cc;
+      margin-bottom: 1rem;
+    }
+    
+    .benefit-title {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    
+    .benefit-description {
+      color: #555;
+    }
+    
+    @media (max-width: 768px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>OBDExpress</h1>
+    <p>Diagnostic auto à domicile - Côte d'Azur</p>
+    <nav>
+      <ul>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/services" class="active">Services</a></li>
+        <li><a href="/zones-intervention">Zones desservies</a></li>
+        <li><a href="/carte">Carte</a></li>
+        <li><a href="/tarifs">Tarifs</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="services-container">
+      <div class="services-header">
+        <h1>Nos Services de Diagnostic Automobile</h1>
+        <p>OBDExpress vous propose des services professionnels de diagnostic automobile directement à votre domicile sur toute la Côte d'Azur.</p>
+      </div>
+      
+      <div class="services-grid">
+        <!-- Service 1 -->
+        <div class="service-card">
+          <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+          <div class="service-content">
+            <h3>Diagnostic Complet</h3>
+            <p>Lecture et effacement des codes défaut de votre véhicule avec un équipement professionnel. Compatible avec toutes les marques.</p>
+            <div class="service-price">À partir de 99€</div>
+            <a href="/payment/checkout?service=Diagnostic%20Complet" class="service-cta">Réserver</a>
+          </div>
+        </div>
+        
+        <!-- Service 2 -->
+        <div class="service-card">
+          <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+          <div class="service-content">
+            <h3>Pré-Contrôle Technique</h3>
+            <p>Diagnostic complet avant votre contrôle technique pour identifier les problèmes potentiels et éviter une contre-visite.</p>
+            <div class="service-price">À partir de 119€</div>
+            <a href="/payment/checkout?service=Pr%C3%A9-Contr%C3%B4le%20Technique" class="service-cta">Réserver</a>
+          </div>
+        </div>
+        
+        <!-- Service 3 -->
+        <div class="service-card">
+          <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1504222490345-c075b6008014?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+          <div class="service-content">
+            <h3>Diagnostic Spécifique</h3>
+            <p>Analyse approfondie d'un problème particulier : voyant moteur, ABS, airbag, ESP, etc. Identification précise de la panne.</p>
+            <div class="service-price">À partir de 129€</div>
+            <a href="/payment/checkout?service=Diagnostic%20Sp%C3%A9cifique" class="service-cta">Réserver</a>
+          </div>
+        </div>
+        
+        <!-- Service 4 -->
+        <div class="service-card">
+          <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+          <div class="service-content">
+            <h3>Diagnostic Électronique</h3>
+            <p>Analyse des systèmes électroniques complexes de votre véhicule : tableau de bord, système multimédia, capteurs, etc.</p>
+            <div class="service-price">À partir de 149€</div>
+            <a href="/payment/checkout?service=Diagnostic%20%C3%89lectronique" class="service-cta">Réserver</a>
+          </div>
+        </div>
+        
+        <!-- Service 5 -->
+        <div class="service-card">
+          <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+          <div class="service-content">
+            <h3>Diagnostic Véhicule d'Occasion</h3>
+            <p>Inspection complète avant achat d'un véhicule d'occasion pour éviter les mauvaises surprises et négocier en connaissance de cause.</p>
+            <div class="service-price">À partir de 179€</div>
+            <a href="/payment/checkout?service=Diagnostic%20V%C3%A9hicule%20d%27Occasion" class="service-cta">Réserver</a>
+          </div>
+        </div>
+        
+        <!-- Service 6 -->
+        <div class="service-card">
+          <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1511919884226-fd3cad34687c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+          <div class="service-content">
+            <h3>Forfait Entreprise</h3>
+            <p>Solutions adaptées aux entreprises disposant d'une flotte de véhicules. Tarifs dégressifs en fonction du nombre de véhicules.</p>
+            <div class="service-price">Sur devis</div>
+            <a href="/#contact" class="service-cta">Nous contacter</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="why-choose-us">
+        <h2>Pourquoi choisir OBDExpress ?</h2>
+        <div class="benefits-grid">
+          <div class="benefit-item">
+            <div class="benefit-icon">🏠</div>
+            <div class="benefit-title">Service à domicile</div>
+            <div class="benefit-description">Nous nous déplaçons chez vous, pas besoin de vous déplacer.</div>
+          </div>
+          
+          <div class="benefit-item">
+            <div class="benefit-icon">⏱️</div>
+            <div class="benefit-title">Rapidité</div>
+            <div class="benefit-description">Intervention sous 24h dans la plupart des cas.</div>
+          </div>
+          
+          <div class="benefit-item">
+            <div class="benefit-icon">🔧</div>
+            <div class="benefit-title">Équipement professionnel</div>
+            <div class="benefit-description">Matériel de diagnostic de dernière génération.</div>
+          </div>
+          
+          <div class="benefit-item">
+            <div class="benefit-icon">🚗</div>
+            <div class="benefit-title">Toutes marques</div>
+            <div class="benefit-description">Compatible avec tous les véhicules européens, asiatiques et américains.</div>
+          </div>
+          
+          <div class="benefit-item">
+            <div class="benefit-icon">💰</div>
+            <div class="benefit-title">Prix fixe</div>
+            <div class="benefit-description">Pas de mauvaises surprises, tarifs clairs et transparents.</div>
+          </div>
+          
+          <div class="benefit-item">
+            <div class="benefit-icon">👨‍🔧</div>
+            <div class="benefit-title">Techniciens qualifiés</div>
+            <div class="benefit-description">Expertise et conseils professionnels.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>OBDExpress</h3>
+          <p>Diagnostic automobile à domicile sur la Côte d'Azur</p>
+        </div>
+        <div class="footer-section">
+          <h3>Zones principales</h3>
+          <ul>
+            <li><a href="/diagnostic-auto/antibes">Antibes</a></li>
+            <li><a href="/diagnostic-auto/cannes">Cannes</a></li>
+            <li><a href="/diagnostic-auto/cagnes-sur-mer">Cagnes-sur-Mer</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p>Tél : 06 00 00 00 00</p>
+          <p>Email : contact@obdexpress.fr</p>
+        </div>
+      </div>
+      <p class="copyright">&copy; <%= new Date().getFullYear() %> OBDExpress - Tous droits réservés</p>
+    </div>
+  </footer>
+</body>
+</html>

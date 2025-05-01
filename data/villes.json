@@ -1,0 +1,72 @@
+[
+  {
+    "id": "antibes",
+    "name": "Antibes",
+    "title": "Diagnostic automobile à domicile à Antibes | OBDExpress",
+    "description": "Service de diagnostic automobile professionnel à domicile à Antibes. Lecture et effacement des codes défaut, diagnostic multimarque. Prix fixe de 99€.",
+    "content": "OBDExpress propose un service de diagnostic automobile à domicile à Antibes et ses environs. Notre technicien se déplace chez vous pour effectuer un diagnostic complet de votre véhicule avec un matériel professionnel. Nous intervenons rapidement, généralement sous 24h, pour vous aider à identifier les problèmes de votre véhicule.",
+    "price": 99,
+    "keywords": ["diagnostic auto Antibes", "valise diagnostic Antibes", "dépannage automobile Antibes", "OBD Antibes"],
+    "nearby": ["Juan-les-Pins", "Golfe-Juan", "Biot"],
+    "zipCode": "06600",
+    "isMainArea": true,
+    "lat": 43.5812,
+    "lng": 7.1251
+  },
+  {
+    "id": "cannes",
+    "name": "Cannes",
+    "title": "Diagnostic automobile à domicile à Cannes | OBDExpress",
+    "description": "Service de diagnostic automobile professionnel à domicile à Cannes. Intervention rapide, lecture et effacement des codes défaut. Prix fixe de 109€.",
+    "content": "OBDExpress se déplace à votre domicile à Cannes pour réaliser un diagnostic complet de votre véhicule. Notre technicien utilise un équipement professionnel pour identifier rapidement les problèmes de votre voiture. Service disponible 7j/7, idéal avant un contrôle technique ou pour comprendre l'origine d'un voyant allumé.",
+    "price": 109,
+    "keywords": ["diagnostic auto Cannes", "valise diagnostic Cannes", "dépannage automobile Cannes", "OBD Cannes"],
+    "nearby": ["Le Cannet", "La Bocca", "Mandelieu-la-Napoule"],
+    "zipCode": "06400",
+    "isMainArea": false,
+    "lat": 43.5528,
+    "lng": 7.0174
+  },
+  {
+    "id": "cagnes-sur-mer",
+    "name": "Cagnes-sur-Mer",
+    "title": "Diagnostic automobile à domicile à Cagnes-sur-Mer | OBDExpress",
+    "description": "Service de diagnostic automobile à domicile à Cagnes-sur-Mer. Intervention rapide, lecture et effacement des codes défaut. Prix fixe de 109€.",
+    "content": "Notre service de diagnostic automobile à domicile couvre Cagnes-sur-Mer et ses environs. Équipés d'une valise de diagnostic multimarque, nous identifions rapidement les problèmes de votre véhicule sans que vous ayez à vous déplacer. Idéal pour comprendre pourquoi un voyant s'est allumé ou pour préparer votre contrôle technique.",
+    "price": 109,
+    "keywords": ["diagnostic auto Cagnes-sur-Mer", "valise diagnostic Cagnes", "dépannage automobile Cagnes", "OBD Cagnes-sur-Mer"],
+    "nearby": ["Saint-Laurent-du-Var", "Villeneuve-Loubet", "La Colle-sur-Loup"],
+    "zipCode": "06800",
+    "isMainArea": false,
+    "lat": 43.6635,
+    "lng": 7.1451
+  },
+  {
+    "id": "vallauris",
+    "name": "Vallauris",
+    "title": "Diagnostic automobile à domicile à Vallauris | OBDExpress",
+    "description": "Service de diagnostic automobile professionnel à domicile à Vallauris. Lecture et effacement des codes défaut, diagnostic multimarque. Prix fixe de 109€.",
+    "content": "OBDExpress propose un service de diagnostic automobile à domicile à Vallauris. Notre technicien se déplace directement chez vous pour effectuer un diagnostic complet de votre véhicule. Équipés d'une valise de diagnostic multimarque, nous pouvons identifier les problèmes sur la plupart des véhicules, quelle que soit la marque.",
+    "price": 109,
+    "keywords": ["diagnostic auto Vallauris", "valise diagnostic Vallauris", "dépannage automobile Vallauris", "OBD Vallauris"],
+    "nearby": ["Golfe-Juan", "Le Cannet", "Antibes"],
+    "zipCode": "06220",
+    "isMainArea": false,
+    "lat": 43.5804,
+    "lng": 7.0553
+  },
+  {
+    "id": "biot",
+    "name": "Biot",
+    "title": "Diagnostic automobile à domicile à Biot | OBDExpress",
+    "description": "Service de diagnostic automobile professionnel à domicile à Biot. Lecture et effacement des codes défaut, diagnostic multimarque. Prix fixe de 109€.",
+    "content": "Notre service de diagnostic automobile se déplace à votre domicile à Biot. Nous utilisons un équipement professionnel pour diagnostiquer rapidement les problèmes de votre véhicule. Service idéal avant un contrôle technique ou pour comprendre l'origine d'un voyant allumé sur votre tableau de bord.",
+    "price": 109,
+    "keywords": ["diagnostic auto Biot", "valise diagnostic Biot", "dépannage automobile Biot", "OBD Biot"],
+    "nearby": ["Antibes", "Valbonne", "Villeneuve-Loubet"],
+    "zipCode": "06410",
+    "isMainArea": false,
+    "lat": 43.6305,
+    "lng": 7.0997
+  }
+]

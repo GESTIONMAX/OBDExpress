@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Pages statiques -->
+  <url>
+    <loc><%= urls[0].url.split('/diagnostic-auto')[0] %></loc>
+    <lastmod><%= new Date().toISOString().split('T')[0] %></lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc><%= urls[0].url.split('/diagnostic-auto')[0] %>/services</loc>
+    <lastmod><%= new Date().toISOString().split('T')[0] %></lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc><%= urls[0].url.split('/diagnostic-auto')[0] %>/zones-intervention</loc>
+    <lastmod><%= new Date().toISOString().split('T')[0] %></lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc><%= urls[0].url.split('/diagnostic-auto')[0] %>/carte</loc>
+    <lastmod><%= new Date().toISOString().split('T')[0] %></lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc><%= urls[0].url.split('/diagnostic-auto')[0] %>/tarifs</loc>
+    <lastmod><%= new Date().toISOString().split('T')[0] %></lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Pages dynamiques des villes -->
+  <% urls.forEach(function(url) { %>
+  <url>
+    <loc><%= url.url %></loc>
+    <lastmod><%= url.lastmod %></lastmod>
+    <changefreq><%= url.changefreq %></changefreq>
+    <priority><%= url.priority %></priority>
+  </url>
+  <% }); %>
+</urlset>

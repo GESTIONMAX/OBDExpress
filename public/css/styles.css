@@ -1,0 +1,237 @@
+/* Styles de base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f8f9fa;
+}
+
+a {
+  text-decoration: none;
+  color: #0066cc;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Header */
+header {
+  background-color: #0066cc;
+  color: white;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+header p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+nav a {
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+/* Sections principales */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+section {
+  margin-bottom: 4rem;
+}
+
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #0066cc;
+  text-align: center;
+}
+
+/* Hero section */
+#hero {
+  text-align: center;
+  background-color: #e6f2ff;
+  padding: 4rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 4rem;
+}
+
+#hero h2 {
+  font-size: 2.2rem;
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+}
+
+#hero p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: #ff6600;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #e55c00;
+}
+
+/* Services */
+#services ul {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#services li {
+  background-color: white;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Zones */
+#zones {
+  text-align: center;
+}
+
+#zones p {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+/* Tarifs */
+#tarifs {
+  text-align: center;
+}
+
+#tarifs ul {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+#tarifs li {
+  background-color: white;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#tarifs strong {
+  color: #ff6600;
+  font-size: 1.3rem;
+}
+
+/* Contact */
+#contact {
+  text-align: center;
+}
+
+#contact p {
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+input, textarea {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+button {
+  background-color: #0066cc;
+  color: white;
+  padding: 1rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0055aa;
+}
+
+/* Footer */
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  #hero h2 {
+    font-size: 1.8rem;
+  }
+  
+  #hero p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 2rem;
+  }
+  
+  section h2 {
+    font-size: 1.7rem;
+  }
+}

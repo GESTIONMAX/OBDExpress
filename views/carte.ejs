@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <meta name="description" content="Carte des zones d'intervention OBDExpress - Diagnostic automobile à domicile sur Antibes, Cannes, Cagnes-sur-Mer et alentours." />
+  <link rel="stylesheet" href="/css/styles.css">
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+   
+  <!-- Leaflet JS (chargé avant notre script) -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+   
+  <style>
+    #map {
+      height: 600px;
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .map-container {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .map-info {
+      margin-bottom: 2rem;
+    }
+    
+    .map-legend {
+      background: white;
+      padding: 1rem;
+      border-radius: 4px;
+      margin-top: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    
+    .legend-color {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    
+    .zone-standard {
+      background-color: #4CAF50;
+    }
+    
+    .zone-etendue {
+      background-color: #FFC107;
+    }
+    
+    .zone-devis {
+      background-color: #F44336;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>OBDExpress</h1>
+    <p>Diagnostic auto à domicile - Antibes & alentours</p>
+    <nav>
+      <ul>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/zones-intervention">Zones desservies</a></li>
+        <li><a href="/#tarifs">Tarifs</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="map-container">
+      <div class="map-info">
+        <h1>Carte des zones d'intervention</h1>
+        <p>OBDExpress intervient principalement sur Antibes et les communes environnantes. Consultez la carte ci-dessous pour voir notre zone de couverture et les tarifs associés.</p>
+      </div>
+      
+      <div id="map" style="height: 600px; width: 100%; border: 1px solid #ccc;"></div>
+      
+      <div class="map-legend">
+        <h3>Légende</h3>
+        <div class="legend-item">
+          <div class="legend-color zone-standard"></div>
+          <div>Zone standard - 99€ TTC</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color zone-etendue"></div>
+          <div>Zone étendue - 109€ TTC</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color zone-devis"></div>
+          <div>Sur devis (au-delà de 20km)</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>OBDExpress</h3>
+        <p>Diagnostic automobile à domicile sur la Côte d'Azur</p>
+        <p>SIRET: 123 456 789 00010</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Liens rapides</h3>
+        <ul>
+          <li><a href="/#services">Services</a></li>
+          <li><a href="/zones-intervention">Zones desservies</a></li>
+          <li><a href="/#tarifs">Tarifs</a></li>
+          <li><a href="/mentions-legales">Mentions légales</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <ul class="contact-info">
+          <li><i class="icon-phone"></i> 06 XX XX XX XX</li>
+          <li><i class="icon-mail"></i> contact@obdexpress.fr</li>
+          <li><i class="icon-map"></i> Antibes, Côte d'Azur</li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Suivez-nous</h3>
+        <div class="social-links">
+          <a href="#" class="social-link"><i class="icon-facebook"></i></a>
+          <a href="#" class="social-link"><i class="icon-instagram"></i></a>
+          <a href="#" class="social-link"><i class="icon-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; <%= new Date().getFullYear() %> OBDExpress - Tous droits réservés</p>
+    </div>
+  </footer>
+  
+  <script>
+    // Initialisation de la carte centrée sur Antibes
+    const map = L.map('map').setView([43.5800, 7.1250], 11);
+    
+    // Ajout de la couche de carte OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    
+    // Récupération des données de villes depuis l'API
+    fetch('/api/cities')
+      .then(response => response.json())
+      .then(cities => {
+        // Pour chaque ville, ajouter un marqueur
+        cities.forEach(city => {
+          // Déterminer la couleur du marqueur en fonction du prix
+          let markerColor;
+          let zoneType;
+          
+          if (!city.price || city.price === 0) {
+            markerColor = '#F44336'; // Rouge pour les zones sur devis
+            zoneType = 'Sur devis';
+          } else if (city.price <= 99) {
+            markerColor = '#4CAF50'; // Vert pour la zone standard
+            zoneType = 'Zone standard - 99€ TTC';
+          } else {
+            markerColor = '#FFC107'; // Jaune pour la zone étendue
+            zoneType = 'Zone étendue - 109€ TTC';
+          }
+          
+          // Créer une icône personnalisée
+          const markerIcon = L.divIcon({
+            className: 'custom-marker',
+            html: `<div style="background-color: ${markerColor}; width: 12px; height: 12px; border-radius: 50%; border: 2px solid white;"></div>`,
+            iconSize: [16, 16],
+            iconAnchor: [8, 8]
+          });
+          
+          // Ajouter le marqueur à la carte
+          if (city.lat && city.lng) {
+            const marker = L.marker([city.lat, city.lng], { icon: markerIcon }).addTo(map);
+            
+            // Ajouter un popup avec les informations de la ville
+            marker.bindPopup(`
+              <strong>${city.name}</strong><br>
+              ${zoneType}<br>
+              <a href="/diagnostic-auto/${city.id}">Voir les détails</a>
+            `);
+          }
+        });
+        
+        // Ajouter des cercles pour visualiser les zones
+        // Zone standard (Antibes)
+        const antibes = cities.find(city => city.id === 'antibes');
+        if (antibes && antibes.lat && antibes.lng) {
+          L.circle([antibes.lat, antibes.lng], {
+            color: '#4CAF50',
+            fillColor: '#4CAF50',
+            fillOpacity: 0.1,
+            radius: 5000 // 5km
+          }).addTo(map);
+        }
+        
+        // Zone étendue (15km)
+        if (antibes && antibes.lat && antibes.lng) {
+          L.circle([antibes.lat, antibes.lng], {
+            color: '#FFC107',
+            fillColor: '#FFC107',
+            fillOpacity: 0.1,
+            radius: 15000 // 15km
+          }).addTo(map);
+        }
+        
+        // Zone sur devis (20km et au-delà)
+        if (antibes && antibes.lat && antibes.lng) {
+          L.circle([antibes.lat, antibes.lng], {
+            color: '#F44336',
+            fillColor: '#F44336',
+            fillOpacity: 0.1,
+            radius: 20000 // 20km
+          }).addTo(map);
+        }
+      })
+      .catch(error => {
+        console.error('Erreur lors du chargement des données:', error);
+        document.getElementById('map').innerHTML = '<p class="error">Impossible de charger la carte. Veuillez réessayer plus tard.</p>';
+      });
+  </script>
+</body>
+</html>

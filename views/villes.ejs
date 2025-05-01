@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <meta name="description" content="<%= metaDescription %>" />
+  <link rel="stylesheet" href="/css/styles.css">
+  
+  <!-- JSON-LD pour le référencement local -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Diagnostic automobile à domicile",
+    "areaServed": {
+      "@type": "Place",
+      "name": "<%= city.name %>"
+    },
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "OBDExpress",
+      "url": "https://obdexpress.fr/diagnostic-auto/<%= city.id %>"
+    }
+  }
+  </script>
+  
+  <style>
+    .city-hero {
+      background-color: #0066cc;
+      color: white;
+      padding: 3rem 1.5rem;
+      text-align: center;
+    }
+    
+    .city-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    
+    .city-price {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #ff6600;
+      margin: 1.5rem 0;
+    }
+    
+    .nearby-cities {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+    }
+    
+    .nearby-cities h3 {
+      margin-bottom: 1rem;
+    }
+    
+    .nearby-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .nearby-link {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background-color: #e9ecef;
+      border-radius: 4px;
+      text-decoration: none;
+      color: #0066cc;
+      transition: background-color 0.3s ease;
+    }
+    
+    .nearby-link:hover {
+      background-color: #dee2e6;
+    }
+    
+    .cta-section {
+      margin: 2rem 0;
+      text-align: center;
+    }
+    
+    .cta-button {
+      display: inline-block;
+      background-color: #0066cc;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+    }
+    
+    .cta-button:hover {
+      background-color: #0052a3;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>OBDExpress</h1>
+    <p>Diagnostic auto à domicile - Côte d'Azur</p>
+    <nav>
+      <ul>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/zones-intervention">Zones desservies</a></li>
+        <li><a href="/carte">Carte</a></li>
+        <li><a href="/#tarifs">Tarifs</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="city-hero">
+      <div class="container">
+        <h1>Diagnostic automobile à domicile à <%= city.name %></h1>
+        <p>Service rapide et professionnel - Intervention dans la journée</p>
+      </div>
+    </section>
+
+    <section class="city-content">
+      <h2>Nos services de diagnostic auto à <%= city.name %></h2>
+      <p><%= city.content %></p>
+      
+      <div class="city-price">
+        Prix : <%= city.price %>€
+      </div>
+      
+      <p>Notre technicien se déplace directement à votre domicile à <%= city.name %> pour effectuer un diagnostic complet de votre véhicule. Nous utilisons des outils professionnels pour identifier rapidement les problèmes et vous proposer des solutions adaptées.</p>
+      
+      <div class="cta-section">
+        <a href="/#contact" class="cta-button">Prendre rendez-vous</a>
+      </div>
+      
+      <% if (city.nearby && city.nearby.length > 0) { %>
+        <div class="nearby-cities">
+          <h3>Nous intervenons également à proximité de <%= city.name %> :</h3>
+          <div class="nearby-list">
+            <% city.nearby.forEach(function(nearbyCity) { %>
+              <a href="/diagnostic-auto/<%= nearbyCity.id %>" class="nearby-link"><%= nearbyCity.name %></a>
+            <% }); %>
+          </div>
+        </div>
+      <% } %>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>OBDExpress</h3>
+          <p>Diagnostic automobile à domicile sur la Côte d'Azur</p>
+        </div>
+        <div class="footer-section">
+          <h3>Zones principales</h3>
+          <ul>
+            <li><a href="/diagnostic-auto/antibes">Antibes</a></li>
+            <li><a href="/diagnostic-auto/cannes">Cannes</a></li>
+            <li><a href="/diagnostic-auto/cagnes-sur-mer">Cagnes-sur-Mer</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p>Tél : 06 00 00 00 00</p>
+          <p>Email : contact@obdexpress.fr</p>
+        </div>
+      </div>
+      <p class="copyright">&copy; <%= new Date().getFullYear() %> OBDExpress - Tous droits réservés</p>
+    </div>
+  </footer>
+</body>
+</html>

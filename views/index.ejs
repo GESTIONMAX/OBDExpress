@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OBDExpress - Diagnostic voiture à domicile</title>
+  <meta name="description" content="Diagnostic auto à domicile à Antibes et alentours. Effacement voyant moteur, préparation au contrôle technique. Service rapide, professionnel et local." />
+  <link rel="stylesheet" href="/css/styles.css">
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+   
+  <!-- Leaflet JS (chargé avant notre script) -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  
+  <style>
+    .tarif-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .tarif-desc {
+      flex: 1;
+    }
+    
+    .cta-button.small {
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      margin-left: 1rem;
+    }
+    
+    /* Styles pour la carte */
+    .map-container {
+      margin: 1.5rem 0;
+    }
+    
+    .map-legend {
+      background: white;
+      padding: 1rem;
+      border-radius: 4px;
+      margin-top: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .legend-flex {
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    
+    .legend-color {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    
+    .zone-standard {
+      background-color: #4CAF50;
+    }
+    
+    .zone-etendue {
+      background-color: #FFC107;
+    }
+    
+    .zone-devis {
+      background-color: #F44336;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>OBDExpress</h1>
+    <p>Diagnostic auto à domicile - Antibes & alentours</p>
+    <nav>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#zones">Zones desservies</a></li>
+        <li><a href="#tarifs">Tarifs</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="hero">
+      <h2>Voyant moteur allumé ? Ne passez pas à côté du contrôle technique</h2>
+      <p>Service de diagnostic automobile à domicile avec valise professionnelle iCarsoft. Intervention rapide sur Antibes, Cannes, Cagnes, Grasse...</p>
+      <a href="#contact" class="cta-button">Prendre rendez-vous</a>
+    </section>
+
+    <section id="services">
+      <h2>Nos services</h2>
+      <ul>
+        <li>Lecture et effacement de codes défaut (voyant moteur)</li>
+        <li>Diagnostic multimarque avec valise iCarsoft CR Max</li>
+        <li>Remise de rapport de diagnostic sur demande</li>
+        <li>Conseils avant contrôle technique</li>
+      </ul>
+    </section>
+
+    <section id="zones">
+      <h2>Zones desservies</h2>
+      <p>Antibes (zone standard), Cannes, Cagnes-sur-Mer, Grasse, Vallauris, Biot, Le Cannet...</p>
+      <p>Au-delà de 15 km, un supplément peut s'appliquer.</p>
+      
+      <!-- Carte des zones d'intervention -->
+      <div class="map-container">
+        <div id="map" style="height: 350px; width: 90%; max-width: 900px; margin: 20px auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></div>
+        
+        <div class="map-legend">
+          <h3>Légende</h3>
+          <div class="legend-flex">
+            <div class="legend-item">
+              <div class="legend-color zone-standard"></div>
+              <div>Zone standard - 99€ TTC</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color zone-etendue"></div>
+              <div>Zone étendue - 109€ TTC</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color zone-devis"></div>
+              <div>Sur devis (au-delà de 20km)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tarifs">
+      <h2>Tarifs</h2>
+      <ul>
+        <li class="tarif-item">
+          <div class="tarif-desc"><strong>99 € TTC</strong> à Antibes et proches environs</div>
+          <a href="/payment/checkout?service=Diagnostic%20Complet&ville=antibes" class="cta-button small">Payer en ligne</a>
+        </li>
+        <li class="tarif-item">
+          <div class="tarif-desc"><strong>109 € TTC</strong> (ex : Cannes, Cagnes, Vallauris...)</div>
+          <a href="/payment/checkout?service=Diagnostic%20Complet&ville=cannes" class="cta-button small">Payer en ligne</a>
+        </li>
+        <li>Sur devis au-delà de 20 km</li>
+      </ul>
+      <p>Paiement possible en 4 fois via PayPal.</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Réservez votre diagnostic ou posez votre question :</p>
+      <form action="/contact" method="post">
+        <input type="text" name="nom" placeholder="Votre nom" required>
+        <input type="tel" name="tel" placeholder="Votre téléphone" required>
+        <input type="email" name="email" placeholder="Votre email">
+        <textarea name="message" placeholder="Décrivez votre problème"></textarea>
+        <button type="submit">Envoyer</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>OBDExpress</h3>
+        <p>Diagnostic automobile à domicile sur la Côte d'Azur</p>
+        <p>SIRET: 123 456 789 00010</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Liens rapides</h3>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#zones">Zones desservies</a></li>
+          <li><a href="#tarifs">Tarifs</a></li>
+          <li><a href="/mentions-legales">Mentions légales</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <ul class="contact-info">
+          <li><i class="icon-phone"></i> 06 XX XX XX XX</li>
+          <li><i class="icon-mail"></i> contact@obdexpress.fr</li>
+          <li><i class="icon-map"></i> Antibes, Côte d'Azur</li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Suivez-nous</h3>
+        <div class="social-links">
+          <a href="#" class="social-link"><i class="icon-facebook"></i></a>
+          <a href="#" class="social-link"><i class="icon-instagram"></i></a>
+          <a href="#" class="social-link"><i class="icon-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; <%= new Date().getFullYear() %> OBDExpress - Tous droits réservés</p>
+    </div>
+  </footer>
+  
+  <style>
+    .site-footer {
+      background-color: #1a1a1a;
+      color: #f5f5f5;
+      padding: 3rem 0 1rem;
+      margin-top: 3rem;
+    }
+    
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 0 2rem;
+    }
+    
+    .footer-section {
+      flex: 1;
+      min-width: 200px;
+      margin-bottom: 2rem;
+      padding-right: 1rem;
+    }
+    
+    .footer-section h3 {
+      color: #ffffff;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    
+    .footer-section h3:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 40px;
+      height: 2px;
+      background-color: #4CAF50;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-section a {
+      color: #cccccc;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-section a:hover {
+      color: #4CAF50;
+    }
+    
+    .contact-info li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.8rem;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: #333;
+      color: #fff;
+      transition: all 0.3s;
+    }
+    
+    .social-link:hover {
+      background-color: #4CAF50;
+      transform: translateY(-3px);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 1.5rem;
+      margin-top: 1.5rem;
+      border-top: 1px solid #333;
+    }
+    
+    @media (max-width: 768px) {
+      .footer-container {
+        flex-direction: column;
+      }
+      
+      .footer-section {
+        width: 100%;
+        padding-right: 0;
+      }
+    }
+    
+    /* Icônes simples avec CSS */
+    [class^="icon-"] {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      margin-right: 0.5rem;
+    }
+    
+    .icon-phone:before {
+      content: '📞';
+    }
+    
+    .icon-mail:before {
+      content: '✉️';
+    }
+    
+    .icon-map:before {
+      content: '📍';
+    }
+    
+    .icon-facebook:before {
+      content: 'f';
+      font-weight: bold;
+    }
+    
+    .icon-instagram:before {
+      content: 'i';
+      font-weight: bold;
+    }
+    
+    .icon-linkedin:before {
+      content: 'l';
+      font-weight: bold;
+    }
+  </style>
+  
+  <!-- Script pour initialiser la carte Leaflet -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialisation de la carte centrée sur Antibes
+      const map = L.map('map', {
+        zoomControl: true,
+        scrollWheelZoom: false, // Désactive le zoom avec la molette pour éviter les problèmes sur mobile
+        dragging: !L.Browser.mobile, // Désactive le déplacement sur mobile par défaut
+        tap: !L.Browser.mobile // Désactive le tap handler sur mobile
+      }).setView([43.5800, 7.1250], 10);
+      
+      // Ajout de la couche de carte OpenStreetMap avec un style plus clair
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
+      }).addTo(map);
+      
+      // Récupération des données de villes depuis l'API
+      fetch('/api/cities')
+        .then(response => response.json())
+        .then(cities => {
+          // Pour chaque ville, ajouter un marqueur
+          cities.forEach(city => {
+            // Déterminer la couleur du marqueur en fonction du prix
+            let markerColor;
+            let zoneType;
+            
+            if (!city.price || city.price === 0) {
+              markerColor = '#F44336'; // Rouge pour les zones sur devis
+              zoneType = 'Sur devis';
+            } else if (city.price <= 99) {
+              markerColor = '#4CAF50'; // Vert pour la zone standard
+              zoneType = 'Zone standard - 99€ TTC';
+            } else {
+              markerColor = '#FFC107'; // Jaune pour la zone étendue
+              zoneType = 'Zone étendue - 109€ TTC';
+            }
+            
+            // Créer une icône personnalisée plus visible
+            const markerIcon = L.divIcon({
+              className: 'custom-marker',
+              html: `<div style="background-color: ${markerColor}; width: 14px; height: 14px; border-radius: 50%; border: 3px solid white; box-shadow: 0 1px 3px rgba(0,0,0,0.3);"></div>`,
+              iconSize: [20, 20],
+              iconAnchor: [10, 10]
+            });
+            
+            // Ajouter le marqueur à la carte
+            if (city.lat && city.lng) {
+              const marker = L.marker([city.lat, city.lng], { icon: markerIcon }).addTo(map);
+              
+              // Ajouter un popup avec les informations de la ville
+              marker.bindPopup(`
+                <div style="text-align: center; padding: 5px;">
+                  <strong style="font-size: 16px;">${city.name}</strong><br>
+                  <span style="color: ${markerColor}; font-weight: bold;">${zoneType}</span><br>
+                  <a href="/diagnostic-auto/${city.id}" style="display: inline-block; margin-top: 8px; padding: 5px 10px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 4px;">Voir les détails</a>
+                </div>
+              `, { maxWidth: 200 });
+            }
+          });
+          
+          // Ajouter des cercles pour visualiser les zones
+          // Zone standard (Antibes)
+          const antibes = cities.find(city => city.id === 'antibes');
+          if (antibes && antibes.lat && antibes.lng) {
+            L.circle([antibes.lat, antibes.lng], {
+              color: '#4CAF50',
+              fillColor: '#4CAF50',
+              fillOpacity: 0.15,
+              weight: 2,
+              radius: 5000 // 5km
+            }).addTo(map);
+          }
+          
+          // Zone étendue (15km)
+          if (antibes && antibes.lat && antibes.lng) {
+            L.circle([antibes.lat, antibes.lng], {
+              color: '#FFC107',
+              fillColor: '#FFC107',
+              fillOpacity: 0.12,
+              weight: 2,
+              radius: 15000 // 15km
+            }).addTo(map);
+          }
+          
+          // Zone sur devis (20km et au-delà)
+          if (antibes && antibes.lat && antibes.lng) {
+            L.circle([antibes.lat, antibes.lng], {
+              color: '#F44336',
+              fillColor: '#F44336',
+              fillOpacity: 0.1,
+              weight: 2,
+              radius: 20000 // 20km
+            }).addTo(map);
+          }
+          
+          // Ajout des contrôles de zoom en bas à droite
+          map.zoomControl.setPosition('bottomright');
+          
+          // Ajout d'un bouton pour activer/désactiver le déplacement sur mobile
+          if (L.Browser.mobile) {
+            const dragButton = L.control({ position: 'topleft' });
+            let isDraggingEnabled = false;
+            
+            dragButton.onAdd = function() {
+              const div = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+              div.innerHTML = '<a href="#" title="Activer/désactiver le déplacement" style="font-weight: bold; display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: white;">🔄</a>';
+              
+              div.onclick = function() {
+                if (isDraggingEnabled) {
+                  map.dragging.disable();
+                  isDraggingEnabled = false;
+                } else {
+                  map.dragging.enable();
+                  isDraggingEnabled = true;
+                }
+                return false;
+              };
+              
+              return div;
+            };
+            
+            dragButton.addTo(map);
+          }
+        })
+        .catch(error => {
+          console.error('Erreur lors du chargement des données:', error);
+          document.getElementById('map').innerHTML = '<p class="error">Impossible de charger la carte. Veuillez réessayer plus tard.</p>';
+        });
+    });
+  </script>
+</body>
+</html>
