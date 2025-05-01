@@ -210,139 +210,49 @@
   </header>
 
   <main>
-    <div class="tarifs-container">
-      <div class="tarifs-header">
-        <h1>Nos Tarifs</h1>
-        <p>Des prix clairs et transparents pour tous nos services de diagnostic automobile à domicile.</p>
-      </div>
-      
-      <table class="pricing-table">
-        <thead>
-          <tr>
-            <th>Service</th>
-            <th>Description</th>
-            <th>Tarif</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Diagnostic Complet</td>
-            <td>Lecture et effacement des codes défaut, diagnostic multimarque</td>
-            <td class="price">À partir de 99€</td>
-            <td><a href="/payment/checkout?service=Diagnostic%20Complet" class="book-btn">Réserver</a></td>
-          </tr>
-          <tr>
-            <td>Pré-Contrôle Technique</td>
-            <td>Diagnostic complet avant contrôle technique</td>
-            <td class="price">À partir de 119€</td>
-            <td><a href="/payment/checkout?service=Pr%C3%A9-Contr%C3%B4le%20Technique" class="book-btn">Réserver</a></td>
-          </tr>
-          <tr>
-            <td>Diagnostic Spécifique</td>
-            <td>Analyse d'un problème particulier (voyant moteur, ABS, airbag...)</td>
-            <td class="price">À partir de 129€</td>
-            <td><a href="/payment/checkout?service=Diagnostic%20Sp%C3%A9cifique" class="book-btn">Réserver</a></td>
-          </tr>
-          <tr>
-            <td>Diagnostic Électronique</td>
-            <td>Analyse des systèmes électroniques complexes</td>
-            <td class="price">À partir de 149€</td>
-            <td><a href="/payment/checkout?service=Diagnostic%20%C3%89lectronique" class="book-btn">Réserver</a></td>
-          </tr>
-          <tr>
-            <td>Diagnostic Véhicule d'Occasion</td>
-            <td>Inspection complète avant achat d'un véhicule d'occasion</td>
-            <td class="price">À partir de 179€</td>
-            <td><a href="/payment/checkout?service=Diagnostic%20V%C3%A9hicule%20d%27Occasion" class="book-btn">Réserver</a></td>
-          </tr>
-          <tr>
-            <td>Forfait Entreprise</td>
-            <td>Solutions adaptées aux entreprises avec flotte de véhicules</td>
-            <td class="price">Sur devis</td>
-            <td><a href="/#contact" class="book-btn">Contacter</a></td>
-          </tr>
-        </tbody>
-      </table>
-      
-      <div class="zone-pricing">
-        <h2>Tarifs par zone géographique</h2>
-        <div class="zones-grid">
-          <div class="zone-card">
-            <h3>Zone 1 - Tarif Standard</h3>
-            <div class="zone-price">99€</div>
-            <p>Intervention à domicile dans les villes suivantes :</p>
-            <div class="zone-cities">
-              <ul>
-                <li><a href="/diagnostic-auto/antibes">Antibes</a></li>
-                <li>Juan-les-Pins</li>
-                <li>Golfe-Juan</li>
-              </ul>
-            </div>
-            <a href="/zones-intervention" class="zone-cta">Voir sur la carte</a>
+    <section class="bg-gray-50 py-12">
+      <div class="max-w-4xl mx-auto px-4">
+        <h1 class="text-3xl font-bold text-center text-blue-700 mb-8">Tarifs & Paiement</h1>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Zone standard -->
+          <div class="bg-white rounded-lg shadow p-6 text-center">
+            <h2 class="text-xl font-semibold text-gray-800 mb-2">Zone standard</h2>
+            <p class="text-3xl font-bold text-green-600 mb-2">99 € TTC</p>
+            <p class="text-gray-500 mb-4">Antibes et environs (jusqu'à 15 km)</p>
+            <form action="/paiement/standard" method="POST">
+              <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition">
+                Payer en ligne
+              </button>
+            </form>
           </div>
-          
-          <div class="zone-card">
-            <h3>Zone 2 - Tarif Intermédiaire</h3>
-            <div class="zone-price">109€</div>
-            <p>Intervention à domicile dans les villes suivantes :</p>
-            <div class="zone-cities">
-              <ul>
-                <li><a href="/diagnostic-auto/cannes">Cannes</a></li>
-                <li><a href="/diagnostic-auto/cagnes-sur-mer">Cagnes-sur-Mer</a></li>
-                <li><a href="/diagnostic-auto/vallauris">Vallauris</a></li>
-                <li><a href="/diagnostic-auto/biot">Biot</a></li>
-              </ul>
-            </div>
-            <a href="/zones-intervention" class="zone-cta">Voir sur la carte</a>
-          </div>
-          
-          <div class="zone-card">
-            <h3>Zone 3 - Tarif Étendu</h3>
-            <div class="zone-price">129€</div>
-            <p>Intervention à domicile dans les villes suivantes :</p>
-            <div class="zone-cities">
-              <ul>
-                <li>Nice</li>
-                <li>Mougins</li>
-                <li>Valbonne</li>
-                <li>Villeneuve-Loubet</li>
-              </ul>
-            </div>
-            <a href="/zones-intervention" class="zone-cta">Voir sur la carte</a>
+
+          <!-- Zone étendue -->
+          <div class="bg-white rounded-lg shadow p-6 text-center">
+            <h2 class="text-xl font-semibold text-gray-800 mb-2">Zone étendue</h2>
+            <p class="text-3xl font-bold text-yellow-500 mb-2">109 € TTC</p>
+            <p class="text-gray-500 mb-4">Cannes, Cagnes, Grasse, jusqu'à 20 km</p>
+            <form action="/paiement/etendue" method="POST">
+              <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded transition">
+                Payer en ligne
+              </button>
+            </form>
           </div>
         </div>
-      </div>
-      
-      <div class="faq-section">
-        <h2>Questions fréquentes sur nos tarifs</h2>
-        
-        <div class="faq-item">
-          <div class="faq-question">Les prix incluent-ils le déplacement ?</div>
-          <div class="faq-answer">Oui, tous nos tarifs incluent le déplacement à votre domicile dans la zone géographique indiquée. Aucun frais supplémentaire ne sera demandé.</div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">Comment se passe le paiement ?</div>
-          <div class="faq-answer">Vous pouvez payer en ligne par carte bancaire via Stripe ou PayPal lors de votre réservation. Nous acceptons également les paiements en espèces ou par chèque lors de l'intervention.</div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">Y a-t-il des frais supplémentaires ?</div>
-          <div class="faq-answer">Non, le prix affiché est le prix final. Nous n'appliquons pas de frais cachés ou supplémentaires. Si votre véhicule nécessite des interventions additionnelles, nous vous en informerons toujours avant de procéder.</div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">Proposez-vous des remises pour plusieurs véhicules ?</div>
-          <div class="faq-answer">Oui, nous proposons des tarifs dégressifs pour le diagnostic de plusieurs véhicules à la même adresse. Contactez-nous pour obtenir un devis personnalisé.</div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">Ma ville n'est pas listée, pouvez-vous quand même intervenir ?</div>
-          <div class="faq-answer">Nous intervenons sur toute la Côte d'Azur. Si votre ville n'est pas listée, contactez-nous et nous vous indiquerons si nous pouvons vous dépanner et à quel tarif.</div>
+
+        <!-- Conditions -->
+        <div class="mt-12 text-gray-600 text-sm bg-white p-6 rounded shadow">
+          <h3 class="text-lg font-semibold text-gray-800 mb-2">Conditions d'intervention</h3>
+          <ul class="list-disc ml-5 space-y-2">
+            <li>Déplacement gratuit jusqu'à 15 km d'Antibes</li>
+            <li>Supplément au-delà de 15 km (intégré au tarif de la zone étendue)</li>
+            <li>Devis personnalisé au-delà de 20 km</li>
+            <li>Intervention urgente possible selon disponibilité (contactez-nous avant paiement)</li>
+            <li>Paiement sécurisé via PayPal ou Stripe</li>
+          </ul>
         </div>
       </div>
-    </div>
+    </section>
   </main>
 
   <footer>

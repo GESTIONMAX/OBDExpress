@@ -148,121 +148,88 @@
   </header>
 
   <main>
-    <div class="services-container">
-      <div class="services-header">
-        <h1>Nos Services de Diagnostic Automobile</h1>
-        <p>OBDExpress vous propose des services professionnels de diagnostic automobile directement à votre domicile sur toute la Côte d'Azur.</p>
+    <main class="max-w-5xl mx-auto px-4 py-12">
+      <section class="text-center mb-12">
+        <h1 class="text-4xl font-bold text-blue-700">Nos services de diagnostic</h1>
+        <p class="mt-4 text-gray-600">Des prestations professionnelles pour rouler l'esprit tranquille.</p>
+      </section>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Prestation 1 -->
+        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+          <h2 class="text-xl font-semibold text-blue-700 mb-2">Lecture et effacement des codes défauts</h2>
+          <p class="text-gray-600">Analyse complète du voyant moteur, effacement des défauts après réparation.</p>
+        </div>
+
+        <!-- Prestation 2 -->
+        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+          <h2 class="text-xl font-semibold text-blue-700 mb-2">Diagnostic multi-marque avec CanSoft CR Max</h2>
+          <p class="text-gray-600">Compatible avec +80 marques. Outil professionnel utilisé par les garages.</p>
+        </div>
+
+        <!-- Prestation 3 -->
+        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+          <h2 class="text-xl font-semibold text-blue-700 mb-2">Remise du rapport de diagnostic</h2>
+          <p class="text-gray-600">Un rapport clair vous est remis (PDF ou papier) pour vos démarches.</p>
+        </div>
+
+        <!-- Prestation 4 -->
+        <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+          <h2 class="text-xl font-semibold text-blue-700 mb-2">Conseils personnalisés avant contrôle technique</h2>
+          <p class="text-gray-600">Évitez les mauvaises surprises au CT avec un pré-diagnostic complet.</p>
+        </div>
       </div>
+
+      <!-- Section outil pro -->
+      <section class="mt-16 text-center">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Notre outil professionnel : CanSoft CR Max</h2>
+        <img src="/images/cansoft-crmax.jpg" alt="CanSoft CR Max" class="mx-auto w-full max-w-md rounded-lg shadow-lg mb-4">
+        <p class="text-gray-600 max-w-2xl mx-auto">
+          Le CanSoft CR Max est un outil de diagnostic reconnu, utilisé par de nombreux professionnels. Il permet une analyse précise des calculateurs (moteur, ABS, airbag...) pour toutes les marques courantes.
+        </p>
+      </section>
       
-      <div class="services-grid">
-        <!-- Service 1 -->
-        <div class="service-card">
-          <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
-          <div class="service-content">
-            <h3>Diagnostic Complet</h3>
-            <p>Lecture et effacement des codes défaut de votre véhicule avec un équipement professionnel. Compatible avec toutes les marques.</p>
-            <div class="service-price">À partir de 99€</div>
-            <a href="/payment/checkout?service=Diagnostic%20Complet" class="service-cta">Réserver</a>
+      <div class="why-choose-us mt-16">
+        <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">Pourquoi choisir OBDExpress ?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+            <div class="text-3xl mb-3">🏠</div>
+            <h3 class="text-lg font-semibold text-blue-700 mb-2">Service à domicile</h3>
+            <p class="text-gray-600">Nous nous déplaçons chez vous, pas besoin de vous déplacer.</p>
           </div>
-        </div>
-        
-        <!-- Service 2 -->
-        <div class="service-card">
-          <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
-          <div class="service-content">
-            <h3>Pré-Contrôle Technique</h3>
-            <p>Diagnostic complet avant votre contrôle technique pour identifier les problèmes potentiels et éviter une contre-visite.</p>
-            <div class="service-price">À partir de 119€</div>
-            <a href="/payment/checkout?service=Pr%C3%A9-Contr%C3%B4le%20Technique" class="service-cta">Réserver</a>
+          
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+            <div class="text-3xl mb-3">⏱️</div>
+            <h3 class="text-lg font-semibold text-blue-700 mb-2">Rapidité</h3>
+            <p class="text-gray-600">Intervention sous 24h dans la plupart des cas.</p>
           </div>
-        </div>
-        
-        <!-- Service 3 -->
-        <div class="service-card">
-          <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1504222490345-c075b6008014?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
-          <div class="service-content">
-            <h3>Diagnostic Spécifique</h3>
-            <p>Analyse approfondie d'un problème particulier : voyant moteur, ABS, airbag, ESP, etc. Identification précise de la panne.</p>
-            <div class="service-price">À partir de 129€</div>
-            <a href="/payment/checkout?service=Diagnostic%20Sp%C3%A9cifique" class="service-cta">Réserver</a>
+          
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+            <div class="text-3xl mb-3">🔧</div>
+            <h3 class="text-lg font-semibold text-blue-700 mb-2">Équipement professionnel</h3>
+            <p class="text-gray-600">Matériel de diagnostic de dernière génération.</p>
           </div>
-        </div>
-        
-        <!-- Service 4 -->
-        <div class="service-card">
-          <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
-          <div class="service-content">
-            <h3>Diagnostic Électronique</h3>
-            <p>Analyse des systèmes électroniques complexes de votre véhicule : tableau de bord, système multimédia, capteurs, etc.</p>
-            <div class="service-price">À partir de 149€</div>
-            <a href="/payment/checkout?service=Diagnostic%20%C3%89lectronique" class="service-cta">Réserver</a>
+          
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+            <div class="text-3xl mb-3">🚗</div>
+            <h3 class="text-lg font-semibold text-blue-700 mb-2">Toutes marques</h3>
+            <p class="text-gray-600">Compatible avec tous les véhicules européens, asiatiques et américains.</p>
           </div>
-        </div>
-        
-        <!-- Service 5 -->
-        <div class="service-card">
-          <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
-          <div class="service-content">
-            <h3>Diagnostic Véhicule d'Occasion</h3>
-            <p>Inspection complète avant achat d'un véhicule d'occasion pour éviter les mauvaises surprises et négocier en connaissance de cause.</p>
-            <div class="service-price">À partir de 179€</div>
-            <a href="/payment/checkout?service=Diagnostic%20V%C3%A9hicule%20d%27Occasion" class="service-cta">Réserver</a>
+          
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+            <div class="text-3xl mb-3">💰</div>
+            <h3 class="text-lg font-semibold text-blue-700 mb-2">Prix fixe</h3>
+            <p class="text-gray-600">Pas de mauvaises surprises, tarifs clairs et transparents.</p>
           </div>
-        </div>
-        
-        <!-- Service 6 -->
-        <div class="service-card">
-          <div class="service-image" style="background-image: url('https://images.unsplash.com/photo-1511919884226-fd3cad34687c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
-          <div class="service-content">
-            <h3>Forfait Entreprise</h3>
-            <p>Solutions adaptées aux entreprises disposant d'une flotte de véhicules. Tarifs dégressifs en fonction du nombre de véhicules.</p>
-            <div class="service-price">Sur devis</div>
-            <a href="/#contact" class="service-cta">Nous contacter</a>
+          
+          <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
+            <div class="text-3xl mb-3">👨‍🔧</div>
+            <h3 class="text-lg font-semibold text-blue-700 mb-2">Techniciens qualifiés</h3>
+            <p class="text-gray-600">Expertise et conseils professionnels.</p>
           </div>
         </div>
       </div>
-      
-      <div class="why-choose-us">
-        <h2>Pourquoi choisir OBDExpress ?</h2>
-        <div class="benefits-grid">
-          <div class="benefit-item">
-            <div class="benefit-icon">🏠</div>
-            <div class="benefit-title">Service à domicile</div>
-            <div class="benefit-description">Nous nous déplaçons chez vous, pas besoin de vous déplacer.</div>
-          </div>
-          
-          <div class="benefit-item">
-            <div class="benefit-icon">⏱️</div>
-            <div class="benefit-title">Rapidité</div>
-            <div class="benefit-description">Intervention sous 24h dans la plupart des cas.</div>
-          </div>
-          
-          <div class="benefit-item">
-            <div class="benefit-icon">🔧</div>
-            <div class="benefit-title">Équipement professionnel</div>
-            <div class="benefit-description">Matériel de diagnostic de dernière génération.</div>
-          </div>
-          
-          <div class="benefit-item">
-            <div class="benefit-icon">🚗</div>
-            <div class="benefit-title">Toutes marques</div>
-            <div class="benefit-description">Compatible avec tous les véhicules européens, asiatiques et américains.</div>
-          </div>
-          
-          <div class="benefit-item">
-            <div class="benefit-icon">💰</div>
-            <div class="benefit-title">Prix fixe</div>
-            <div class="benefit-description">Pas de mauvaises surprises, tarifs clairs et transparents.</div>
-          </div>
-          
-          <div class="benefit-item">
-            <div class="benefit-icon">👨‍🔧</div>
-            <div class="benefit-title">Techniciens qualifiés</div>
-            <div class="benefit-description">Expertise et conseils professionnels.</div>
-          </div>
-        </div>
-      </div>
-    </div>
+    </main>
   </main>
 
   <footer>
