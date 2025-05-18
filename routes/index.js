@@ -3,24 +3,45 @@ const router = express.Router();
 
 // Route pour la page d'accueil
 router.get('/', (req, res) => {
-  res.render('index', { title: 'OBDExpress - Diagnostic auto à domicile' });
+  res.render('index', { title: 'Accueil | OBDExpress' });
 });
 
-// Route pour traiter le formulaire de contact
+router.get('/services', (req, res) => {
+  res.render('services', { title: 'Services | OBDExpress' });
+});
+
+router.get('/tarifs', (req, res) => {
+  res.render('tarifs', { title: 'Tarifs | OBDExpress' });
+});
+
+router.get('/zones', (req, res) => {
+  const localController = require('../controllers/localController');
+  const cities = localController.getAllCities();
+  res.render('zones', { 
+    title: 'Zones desservies | OBDExpress',
+    cities: cities
+  });
+});
+
+router.get('/contact', (req, res) => {
+  res.render('contact', { title: 'Contact | OBDExpress' });
+});
+
+router.get('/cgv', (req, res) => {
+  res.render('cgv', { title: 'Conditions générales de vente | OBDExpress' });
+});
+
+
+// Traitement du formulaire de contact (POST uniquement)
 router.post('/contact', (req, res) => {
   const { nom, tel, email, message } = req.body;
-  
-  // Affichage des données du formulaire dans la console (pour test)
+
   console.log('Nouveau message de contact:');
   console.log('Nom:', nom);
   console.log('Téléphone:', tel);
   console.log('Email:', email || 'Non fourni');
   console.log('Message:', message || 'Non fourni');
-  
-  // Dans une version future, vous pourriez envoyer un email ou enregistrer en base de données
-  
-  // Redirection vers la page d'accueil avec un message de succès
-  // Note: Dans une version plus avancée, vous pourriez utiliser des flash messages
+
   res.send(`
     <html>
       <head>
@@ -50,6 +71,16 @@ router.post('/contact', (req, res) => {
       </body>
     </html>
   `);
+});
+
+// Mentions légales (à conserver)
+router.get('/mentions-legales', (req, res) => {
+  res.render('mentions-legales', { title: 'Mentions légales | OBDExpress' });
+});
+
+// Politique de confidentialité (à conserver si page présente)
+router.get('/politique-confidentialite', (req, res) => {
+  res.render('politique-confidentialite', { title: 'Politique de confidentialité | OBDExpress' });
 });
 
 module.exports = router;

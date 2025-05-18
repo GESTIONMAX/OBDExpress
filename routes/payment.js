@@ -46,8 +46,53 @@ router.get('/checkout', (req, res) => {
     service: service || 'Diagnostic automobile',
     ville: ville || 'Côte d\'Azur',
     prix: prix,
-    stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY || 'pk_test_dummy'
+    stripePublicKey: process.env.STRIPE_PUBLIC_KEY || 'pk_test_dummy',
+    clientEmail: req.query.email || '',
+    bookingId: req.query.bookingId || ''
   });
+});
+
+// Paiement pour une réservation spécifique
+router.get('/paiement-reservation/:bookingId', (req, res) => {
+  try {
+    const bookingId = req.params.bookingId;
+    
+    // Utiliser le modèle bookingModel pour récupérer les informations
+    const bookingModel = require('../models/booking');
+    const booking = bookingModel.getBookingById(bookingId);
+    
+    if (!booking) {
+      return res.status(404).render('error', {
+        message: 'Réservation non trouvée',
+        error: { status: 404, stack: '' }
+      });
+    }
+    
+    // Préparer les données pour la page de paiement
+    // Utiliser directement les informations de la réservation
+    const montant = booking.price || 99;
+    const nomService = booking.serviceType || 'Diagnostic automobile';
+    const clientEmail = booking.customerEmail || req.query.email || '';
+    
+    // Pré-traitement des données
+    // Gérer les dates préférées et créneaux pour éviter les erreurs
+    const processedBooking = { ...booking };
+    
+    res.render('checkout', {
+      title: 'Paiement de réservation | OBDExpress',
+      service: nomService,
+      prix: montant,
+      stripePublicKey: process.env.STRIPE_PUBLIC_KEY || 'pk_test_dummy',
+      clientEmail: clientEmail,
+      bookingId: bookingId
+    });
+  } catch (error) {
+    console.error('Erreur lors de la récupération des détails de réservation:', error);
+    res.status(500).render('error', {
+      message: 'Erreur lors de la récupération des détails de paiement',
+      error: { status: 500, stack: process.env.NODE_ENV === 'development' ? error.stack : '' }
+    });
+  }
 });
 
 // Traitement du paiement Stripe

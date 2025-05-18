@@ -1,147 +1,67 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title><%= title %></title>
   <meta name="description" content="Page non trouvée - OBDExpress, service de diagnostic automobile à domicile sur la Côte d'Azur" />
-  <link rel="stylesheet" href="/css/styles.css">
-  <style>
-    .error-container {
-      max-width: 800px;
-      margin: 4rem auto;
-      text-align: center;
-      padding: 2rem;
-    }
-    
-    .error-code {
-      font-size: 8rem;
-      font-weight: bold;
-      color: #ff6600;
-      margin: 0;
-      line-height: 1;
-    }
-    
-    .error-message {
-      font-size: 1.5rem;
-      margin: 1rem 0 2rem;
-      color: #333;
-    }
-    
-    .error-details {
-      margin-bottom: 2rem;
-      color: #666;
-    }
-    
-    .back-home {
-      display: inline-block;
-      background-color: #0066cc;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 4px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: background-color 0.3s ease;
-    }
-    
-    .back-home:hover {
-      background-color: #0052a3;
-    }
-    
-    .suggestions {
-      margin-top: 3rem;
-      padding-top: 2rem;
-      border-top: 1px solid #ddd;
-    }
-    
-    .suggestions h3 {
-      margin-bottom: 1rem;
-    }
-    
-    .suggestions-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      list-style: none;
-      padding: 0;
-    }
-    
-    .suggestions-list li a {
-      display: block;
-      padding: 0.75rem 1rem;
-      background-color: #f8f9fa;
-      border-radius: 4px;
-      text-decoration: none;
-      color: #0066cc;
-      transition: background-color 0.3s ease;
-    }
-    
-    .suggestions-list li a:hover {
-      background-color: #e9ecef;
-    }
-  </style>
+  <link rel="stylesheet" href="/css/styles.css" />
 </head>
-<body>
-  <header>
-    <h1>OBDExpress</h1>
-    <p>Diagnostic auto à domicile - Côte d'Azur</p>
-    <nav>
-      <ul>
-        <li><a href="/">Accueil</a></li>
-        <li><a href="/#services">Services</a></li>
-        <li><a href="/zones-intervention">Zones desservies</a></li>
-        <li><a href="/carte">Carte</a></li>
-        <li><a href="/#tarifs">Tarifs</a></li>
-        <li><a href="/#contact">Contact</a></li>
+<body class="bg-gray-100 text-gray-800">
+
+  <header class="bg-blue-700 text-white text-center py-6">
+    <h1 class="text-3xl font-bold">OBDExpress</h1>
+    <p class="text-sm mt-2">Diagnostic auto à domicile - Côte d'Azur</p>
+    <nav class="mt-4">
+      <ul class="flex justify-center space-x-4 text-white text-sm">
+        <li><a href="/" class="hover:underline">Accueil</a
+        <li><a href="/services" class="hover:underline">Services</a>
+        <li><a href="/tarifs" class="hover:underline">Tarifs</a>
+        <li><a href="/contact" class="hover:underline">Contact</a>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <div class="error-container">
-      <h1 class="error-code">404</h1>
-      <h2 class="error-message">Page non trouvée</h2>
-      <p class="error-details">La page que vous recherchez n'existe pas ou a été déplacée.</p>
-      
-      <a href="/" class="back-home">Retour à l'accueil</a>
-      
-      <div class="suggestions">
-        <h3>Vous pourriez être intéressé par :</h3>
-        <ul class="suggestions-list">
-          <li><a href="/">Accueil</a></li>
-          <li><a href="/#services">Nos services</a></li>
-          <li><a href="/zones-intervention">Zones d'intervention</a></li>
-          <li><a href="/carte">Carte interactive</a></li>
-          <li><a href="/#contact">Nous contacter</a></li>
-        </ul>
-      </div>
+  <main class="max-w-3xl mx-auto text-center py-20 px-4">
+    <h1 class="text-7xl font-bold text-orange-500">404</h1>
+    <h2 class="text-2xl font-semibold mt-6">Page non trouvée</h2>
+    <p class="mt-4 text-gray-600">La page que vous recherchez n'existe pas ou a été déplacée.</p>
+
+    <a href="/" class="mt-6 inline-block bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition">Retour à l'accueil</a>
+
+    <div class="mt-12 border-t pt-8">
+      <h3 class="text-lg font-medium mb-4">Vous pourriez être intéressé par :</h3>
+      <ul class="flex flex-wrap justify-center gap-3">
+        <li><a href="/" class="bg-white px-4 py-2 rounded shadow hover:bg-gray-100">Accueil</a></li>
+        <li><a href="/#services" class="bg-white px-4 py-2 rounded shadow hover:bg-gray-100">Nos services</a></li>
+        <li><a href="/carte" class="bg-white px-4 py-2 rounded shadow hover:bg-gray-100">Carte interactive</a></li>
+        <li><a href="/#contact" class="bg-white px-4 py-2 rounded shadow hover:bg-gray-100">Nous contacter</a></li>
+      </ul>
     </div>
   </main>
 
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h3>OBDExpress</h3>
-          <p>Diagnostic automobile à domicile sur la Côte d'Azur</p>
-        </div>
-        <div class="footer-section">
-          <h3>Zones principales</h3>
-          <ul>
-            <li><a href="/diagnostic-auto/antibes">Antibes</a></li>
-            <li><a href="/diagnostic-auto/cannes">Cannes</a></li>
-            <li><a href="/diagnostic-auto/cagnes-sur-mer">Cagnes-sur-Mer</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h3>Contact</h3>
-          <p>Tél : 06 00 00 00 00</p>
-          <p>Email : contact@obdexpress.fr</p>
-        </div>
+  <footer class="bg-gray-800 text-white py-10">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-6 text-sm">
+      <div>
+        <h3 class="font-bold text-white mb-2">OBDExpress</h3>
+        <p>Diagnostic automobile à domicile sur la Côte d'Azur</p>
       </div>
-      <p class="copyright">&copy; <%= new Date().getFullYear() %> OBDExpress - Tous droits réservés</p>
+      <div>
+        <h3 class="font-bold mb-2">Zones principales</h3>
+        <ul>
+          <li><a href="/diagnostic-auto/antibes" class="hover:underline">Antibes</a></li>
+          <li><a href="/diagnostic-auto/cannes" class="hover:underline">Cannes</a></li>
+          <li><a href="/diagnostic-auto/cagnes-sur-mer" class="hover:underline">Cagnes-sur-Mer</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-bold mb-2">Contact</h3>
+        <p>Tél : 06 00 00 00 00</p>
+        <p>Email : contact@obdexpress.fr</p>
+      </div>
     </div>
+    <p class="text-center mt-6 text-xs">&copy; <%= new Date().getFullYear() %> OBDExpress - Tous droits réservés</p>
   </footer>
+
 </body>
 </html>

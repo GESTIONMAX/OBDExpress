@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <meta name="description" content="Paiement sécurisé pour les services de diagnostic automobile OBDExpress" />
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=<%= process.env.PAYPAL_CLIENT_ID %>&currency=EUR"></script>
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-blue-700 to-blue-800 text-white py-6 shadow-md">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+      <div>
+        <h1 class="text-3xl font-bold">OBDExpress</h1>
+        <p class="text-sm mt-1 text-blue-100">Diagnostic auto à domicile - Antibes & alentours</p>
+      </div>
+      <nav class="mt-4 md:mt-0">
+        <ul class="flex gap-4 text-sm">
+          <li><a href="/" class="hover:text-blue-200 transition duration-300">Accueil</a></li>
+          <li><a href="/#services" class="hover:text-blue-200 transition duration-300">Services</a></li>
+          <li><a href="/#zones" class="hover:text-blue-200 transition duration-300">Zones desservies</a></li>
+          <li><a href="/#tarifs" class="hover:text-blue-200 transition duration-300">Tarifs</a></li>
+          <li><a href="/#contact" class="hover:text-blue-200 transition duration-300">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-3xl mx-auto px-4 py-10 w-full">
+    <section id="checkout" class="bg-white rounded-lg shadow-lg overflow-hidden">
+      <div class="bg-blue-600 text-white py-6 px-6">
+        <h2 class="text-2xl font-bold">Paiement sécurisé</h2>
+      </div>
+      
+      <div class="p-6">
+        <% if (typeof bookingId !== 'undefined' && bookingId) { %>
+          <div class="bg-blue-50 rounded-lg p-4 mb-6 border border-blue-100">
+            <div class="flex items-center mb-2">
+              <svg class="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+              </svg>
+              <p class="font-medium text-gray-700">Détails de la réservation</p>
+            </div>
+            <p class="text-gray-600 mb-1"><span class="font-medium">Référence :</span> <%= bookingId %></p>
+            <% if (typeof clientEmail !== 'undefined' && clientEmail) { %>
+              <p class="text-gray-600"><span class="font-medium">Client :</span> <%= clientEmail %></p>
+            <% } %>
+          </div>
+        <% } %>
+        
+        <div class="mb-8">
+          <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+            <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+            Récapitulatif de votre réservation
+          </h3>
+          <form id="payment-form">
+            <div class="bg-gray-50 border border-gray-200 rounded-lg p-5">
+              <div class="flex justify-between items-start mb-3">
+                <div>
+                  <h4 class="font-bold text-xl text-gray-800"><%= service %></h4>
+                  
+                  <% if (service === 'Diagnostic Simple' || prix === 99) { %>
+                    <p class="text-gray-600 mt-1">Lecture et effacement des codes défaut</p>
+                  <% } else if (service === 'Diagnostic Complet' || prix === 109) { %>
+                    <p class="text-gray-600 mt-1">Lecture, effacement et analyse approfondie</p>
+                  <% } else if (service === 'Diagnostic Pré-achat' || prix === 129) { %>
+                    <p class="text-gray-600 mt-1">Vérification complète avant achat</p>
+                  <% } else { %>
+                    <p class="text-gray-600 mt-1">Détails du service sélectionné</p>
+                  <% } %>
+                </div>
+                
+                <div class="bg-blue-600 text-white px-4 py-2 rounded-full font-bold">
+                  <%= prix %> €
+                </div>
+              </div>
+              
+              <input type="hidden" id="service-selected" name="service" value="<%= service %>" data-amount="<%= prix %>">
+            </div>
+          
+          <div class="mt-8">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+              <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+              </svg>
+              Choisissez votre méthode de paiement
+            </h3>
+            
+            <div class="flex border-b border-gray-300 mb-6">
+              <div class="payment-tab cursor-pointer py-3 px-6 border-b-2 border-blue-600 text-blue-600 font-medium active" data-tab="card">
+                <div class="flex items-center">
+                  <svg class="w-5 h-5 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"></path>
+                  </svg>
+                  Carte bancaire
+                </div>
+              </div>
+              <div class="payment-tab cursor-pointer py-3 px-6 border-b-2 border-transparent text-gray-500 hover:text-gray-700" data-tab="paypal">
+                <div class="flex items-center">
+                  <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19.554 9.488c.121.563.106 1.246-.04 2.051-.582 2.978-2.477 4.466-5.683 4.466h-.442a.666.666 0 0 0-.444.166.72.72 0 0 0-.257.421l-.744 3.396-.214.97c-.022.102-.048.19-.075.265a.555.555 0 0 1-.536.318H8.746c-.355 0-.479-.19-.411-.582l.037-.156.905-4.11.025-.103c.025-.102.051-.19.078-.265a.555.555 0 0 1 .536-.319h1.619c2.923 0 5.207-1.335 5.873-5.193.478-2.785-.042-4.246-1.308-5.368-.371-.262-.79-.468-1.238-.617.09-.075.182-.148.276-.217 1.267-.92 2.15-1.658 2.215-3.547.058-1.885-1.31-3.561-3.411-3.561H8.578c-.398 0-.766.19-1.004.51L3.69 12.258c-.375.51-.12 1.005.83 1.515.205.51.51.817 1.096.817h2.53c.155 0 .31-.057.438-.17a.868.868 0 0 0 .327-.426l.744-3.396c.32-1.467 1.604-2.215 3.197-2.215h.289c.153 0 .335.035.519.035 1.801.262 2.707 1.515 2.641 3.07Z"></path>
+                  </svg>
+                  PayPal
+                </div>
+              </div>
+            </div>
+            
+            <div class="payment-tab-content active" id="tab-card">
+              <div class="bg-white border border-gray-300 rounded-lg p-4 mb-4">
+                <div id="card-element" class="py-3"></div>
+                <div id="card-errors" role="alert" class="text-red-600 text-sm mt-2"></div>
+              </div>
+              
+              <div class="mb-5">
+                <label for="cardholder-name" class="block text-sm font-medium text-gray-700 mb-1">Nom sur la carte</label>
+                <input type="text" id="cardholder-name" placeholder="Nom du titulaire" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+              </div>
+              
+              <button type="button" id="submit-payment" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition duration-200 flex items-center justify-center">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                </svg>
+                Payer <%= prix %> €
+              </button>
+            </div>
+            
+            <div class="payment-tab-content hidden" id="tab-paypal">
+              <div id="paypal-button-container" class="py-4"></div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-gray-800 text-white py-6 mt-10">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <p class="text-gray-300">&copy; <%= new Date().getFullYear() %> OBDExpress - Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <script>
+    // Gestion des onglets de paiement
+    document.querySelectorAll('.payment-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        // Retirer la classe active et les styles de tous les onglets
+        document.querySelectorAll('.payment-tab').forEach(t => {
+          t.classList.remove('active');
+          t.classList.remove('border-blue-600');
+          t.classList.remove('text-blue-600');
+          t.classList.add('border-transparent');
+          t.classList.add('text-gray-500');
+        });
+        
+        // Ajouter la classe active et les styles à l'onglet cliqué
+        this.classList.add('active');
+        this.classList.add('border-blue-600');
+        this.classList.add('text-blue-600');
+        this.classList.remove('border-transparent');
+        this.classList.remove('text-gray-500');
+        
+        // Cacher tous les contenus d'onglet
+        document.querySelectorAll('.payment-tab-content').forEach(content => {
+          content.classList.add('hidden');
+          content.classList.remove('active');
+        });
+        
+        // Afficher le contenu correspondant à l'onglet
+        const tabName = this.getAttribute('data-tab');
+        const targetTab = document.getElementById(`tab-${tabName}`);
+        targetTab.classList.remove('hidden');
+        targetTab.classList.add('active');
+      });
+    });
+    
+    // Configuration de Stripe avec la nouvelle approche Checkout Sessions
+    const stripe = Stripe('<%= stripePublicKey %>');
+    
+    // Soumission du formulaire avec Stripe Checkout Session
+    const submitButton = document.getElementById('submit-payment');
+    submitButton.addEventListener('click', async function(event) {
+      event.preventDefault();
+      
+      // Vérifier si l'onglet carte est actif
+      if (!document.querySelector('.payment-tab[data-tab="card"]').classList.contains('active')) {
+        return;
+      }
+      
+      const selectedService = document.getElementById('service-selected');
+      const service = selectedService.value;
+      const amount = selectedService.getAttribute('data-amount');
+      const cardholderName = document.getElementById('cardholder-name').value;
+      
+      // Désactiver le bouton de soumission et montrer l'indicateur de chargement
+      const submitButton = document.getElementById('submit-payment');
+      submitButton.disabled = true;
+      submitButton.innerHTML = '<span class="inline-block animate-spin mr-2"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg></span> Traitement en cours...';
+      
+      // Utiliser la nouvelle API de sessions de paiement
+      try {
+        const response = await fetch('/paiements/creer-session', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            montant: parseFloat(amount),
+            client_email: '<%= typeof clientEmail !== "undefined" ? clientEmail : "" %>',
+            booking_id: '<%= typeof bookingId !== "undefined" ? bookingId : "" %>',
+            description: `Service de diagnostic: ${service}`,
+            service_id: 'selected'
+          })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success && data.data.url) {
+          // Rediriger vers la page de paiement Stripe
+          window.location.href = data.data.url;
+        } else {
+          // Afficher l'erreur
+          const errorElement = document.getElementById('card-errors');
+          errorElement.textContent = data.error || 'Une erreur est survenue lors de la création de la session de paiement.';
+          submitButton.disabled = false;
+          submitButton.innerHTML = '<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>Payer <%= prix %> €';
+        }
+      } catch (error) {
+        console.error('Erreur:', error);
+        const errorElement = document.getElementById('card-errors');
+        errorElement.textContent = 'Une erreur est survenue lors de la communication avec le serveur.';
+        submitButton.disabled = false;
+        submitButton.innerHTML = '<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>Payer <%= prix %> €';
+      }
+    });
+    
+    // Configuration de PayPal
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        const selectedService = document.getElementById('service-selected');
+        const amount = selectedService.getAttribute('data-amount');
+        
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: amount,
+              currency_code: 'EUR'
+            }
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          // Créer un formulaire pour soumettre les données au serveur
+          const selectedService = document.getElementById('service-selected');
+          const service = selectedService.value;
+          const amount = selectedService.getAttribute('data-amount');
+          
+          const form = document.createElement('form');
+          form.method = 'POST';
+          form.action = '/payment/create-paypal-payment';
+          
+          const amountInput = document.createElement('input');
+          amountInput.setAttribute('type', 'hidden');
+          amountInput.setAttribute('name', 'amount');
+          amountInput.setAttribute('value', amount);
+          form.appendChild(amountInput);
+          
+          const serviceInput = document.createElement('input');
+          serviceInput.setAttribute('type', 'hidden');
+          serviceInput.setAttribute('name', 'service');
+          serviceInput.setAttribute('value', service);
+          form.appendChild(serviceInput);
+          
+          document.body.appendChild(form);
+          form.submit();
+        });
+      }
+    }).render('#paypal-button-container');
+  </script>
+</body>
+</html>

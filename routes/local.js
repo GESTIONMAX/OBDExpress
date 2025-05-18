@@ -3,13 +3,22 @@ const express = require('express');
 const router = express.Router();
 const localController = require('../controllers/localController');
 
-// Page listant toutes les villes desservies
-router.get('/zones-intervention', (req, res) => {
+// Note: La route /zones est maintenant gérée dans index.js
+// Cette route est conservée pour référence mais n'est plus active
+// car indexRoutes est chargé avant localRoutes dans app.js
+/*
+router.get('/zones', (req, res) => {
   const cities = localController.getAllCities();
   res.render('zones', { 
     title: 'Zones d\'intervention | OBDExpress',
     cities: cities
   });
+});
+*/
+
+// Page listant toutes les villes desservies (redirection vers /zones)
+router.get('/zones-intervention', (req, res) => {
+  res.redirect('/zones');
 });
 
 // Pages spécifiques à chaque ville
@@ -41,9 +50,7 @@ router.get('/sitemap.xml', (req, res) => {
 
 // Page de la carte
 router.get('/carte', (req, res) => {
-  res.render('carte', { 
-    title: 'Carte des zones d\'intervention | OBDExpress'
-  });
+  res.redirect('/zones');
 });
 
 // API pour récupérer les données des villes avec coordonnées

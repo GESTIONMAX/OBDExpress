@@ -1,0 +1,69 @@
+{
+  "kind": "collectionType",
+  "collectionName": "services",
+  "info": {
+    "singularName": "service",
+    "pluralName": "services",
+    "displayName": "Service",
+    "description": "Les services de diagnostic proposés par OBDExpress"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nom": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "prix": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "duree": {
+      "type": "integer",
+      "required": true,
+      "min": 1,
+      "default": 60,
+      "description": "Durée du service en minutes"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "nom",
+      "required": true
+    },
+    "disponible": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "ordre": {
+      "type": "integer",
+      "default": 0,
+      "description": "Ordre d'affichage"
+    },
+    "interventions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::intervention.intervention",
+      "mappedBy": "service"
+    },
+    "reservations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::rendez-vous.rendez-vous",
+      "mappedBy": "service"
+    }
+  }
+}

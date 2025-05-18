@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <meta name="description" content="Paiement réussi pour les services de diagnostic automobile OBDExpress" />
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header>
+    <h1>OBDExpress</h1>
+    <p>Diagnostic auto à domicile - Antibes & alentours</p>
+    <nav>
+      <ul>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/#zones">Zones desservies</a></li>
+        <li><a href="/#tarifs">Tarifs</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="payment-success">
+      <div class="success-container">
+        <div class="success-icon">✓</div>
+        <h2>Paiement réussi !</h2>
+        <p>Merci pour votre commande. Votre paiement a été traité avec succès.</p>
+        
+        <div class="payment-details">
+          <h3>Détails de la commande</h3>
+          <ul>
+            <li><strong>Service :</strong> <%= service %></li>
+            <li><strong>Montant :</strong> <%= amount %> €</li>
+            <li><strong>Méthode de paiement :</strong> <%= paymentMethod %></li>
+            <li><strong>Référence :</strong> <%= paymentId %></li>
+          </ul>
+        </div>
+        
+        <p>Nous vous contacterons très prochainement pour planifier votre rendez-vous.</p>
+        
+        <div class="next-steps">
+          <a href="/" class="btn-primary">Retour à l'accueil</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <%= new Date().getFullYear() %> OBDExpress - Tous droits réservés</p>
+  </footer>
+</body>
+</html>

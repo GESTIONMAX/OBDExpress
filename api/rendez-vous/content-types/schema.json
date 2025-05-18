@@ -1,0 +1,100 @@
+{
+  "kind": "collectionType",
+  "collectionName": "rendez_vous",
+  "info": {
+    "singularName": "rendez-vous",
+    "pluralName": "rendez-vous",
+    "displayName": "Réservation",
+    "description": "Réservations de services de diagnostic automobile"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "date": {
+      "type": "datetime",
+      "required": true
+    },
+    "statut": {
+      "type": "enumeration",
+      "enum": [
+        "demandée",
+        "confirmée",
+        "terminée",
+        "annulée"
+      ],
+      "default": "demandée"
+    },
+    "adresse": {
+      "type": "text",
+      "required": true
+    },
+    "ville": {
+      "type": "string",
+      "required": true
+    },
+    "code_postal": {
+      "type": "string",
+      "required": true
+    },
+    "commentaire": {
+      "type": "text"
+    },
+    "prix": {
+      "type": "decimal"
+    },
+    "reference": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "date_creation": {
+      "type": "datetime",
+      "default": "now"
+    },
+    "statut_paiement": {
+      "type": "enumeration",
+      "enum": [
+        "non_payé",
+        "payé",
+        "remboursé"
+      ],
+      "default": "non_payé"
+    },
+    "creneaux_preferes": {
+      "type": "json",
+      "description": "Liste des créneaux préférés par le client"
+    },
+    "client": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::client.client",
+      "inversedBy": "reservations"
+    },
+    "service": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::service.service",
+      "inversedBy": "reservations"
+    },
+    "voiture": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::voiture.voiture",
+      "inversedBy": "reservations"
+    },
+    "technicien": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::technicien.technicien",
+      "inversedBy": "reservations"
+    },
+    "intervention": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::intervention.intervention",
+      "inversedBy": "reservation"
+    }
+  }
+}

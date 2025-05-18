@@ -1,0 +1,70 @@
+{
+  "kind": "collectionType",
+  "collectionName": "techniciens",
+  "info": {
+    "singularName": "technicien",
+    "pluralName": "techniciens",
+    "displayName": "Technicien",
+    "description": "Techniciens de diagnostic automobile"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nom": {
+      "type": "string",
+      "required": true
+    },
+    "prenom": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "telephone": {
+      "type": "string",
+      "required": true
+    },
+    "biographie": {
+      "type": "richtext"
+    },
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "competences": {
+      "type": "text",
+      "description": "Liste des compétences, certifications et spécialités du technicien"
+    },
+    "disponible": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "date_embauche": {
+      "type": "date",
+      "required": true
+    },
+    "reservations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::rendez-vous.rendez-vous",
+      "mappedBy": "technicien"
+    },
+    "interventions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::intervention.intervention",
+      "mappedBy": "technicien"
+    },
+    "zones_intervention": {
+      "type": "json",
+      "description": "Liste des codes postaux/villes desservies par ce technicien"
+    }
+  }
+}

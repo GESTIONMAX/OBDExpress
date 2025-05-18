@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <meta name="description" content="Paiement annulé pour les services de diagnostic automobile OBDExpress" />
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header>
+    <h1>OBDExpress</h1>
+    <p>Diagnostic auto à domicile - Antibes & alentours</p>
+    <nav>
+      <ul>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/#zones">Zones desservies</a></li>
+        <li><a href="/#tarifs">Tarifs</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="payment-cancel">
+      <div class="cancel-container">
+        <h2>Paiement annulé</h2>
+        <p>Vous avez annulé votre paiement. Aucun montant n'a été débité de votre compte.</p>
+        
+        <p>Si vous avez des questions ou si vous souhaitez réessayer, n'hésitez pas à nous contacter.</p>
+        
+        <div class="next-steps">
+          <a href="/payment/checkout" class="btn-primary">Réessayer</a>
+          <a href="/" class="btn-secondary">Retour à l'accueil</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <%= new Date().getFullYear() %> OBDExpress - Tous droits réservés</p>
+  </footer>
+</body>
+</html>

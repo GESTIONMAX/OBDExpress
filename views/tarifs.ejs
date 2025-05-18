@@ -3,281 +3,196 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nos Tarifs | OBDExpress</title>
-  <meta name="description" content="Découvrez nos tarifs pour le diagnostic automobile à domicile sur la Côte d'Azur. Prix transparents et sans surprise." />
+  <title>Tarifs | OBDExpress</title>
+  <meta name="description" content="Découvrez nos tarifs pour le diagnostic automobile à domicile sur Antibes & alentours. Prix transparents et sans surprise." />
   <link rel="stylesheet" href="/css/styles.css">
-  <style>
-    .tarifs-container {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-    
-    .tarifs-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-    
-    .tarifs-header h1 {
-      color: #0066cc;
-      margin-bottom: 1rem;
-    }
-    
-    .pricing-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 3rem;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    
-    .pricing-table th {
-      background-color: #0066cc;
-      color: white;
-      padding: 1.5rem;
-      text-align: left;
-    }
-    
-    .pricing-table td {
-      padding: 1.5rem;
-      border-bottom: 1px solid #e9ecef;
-    }
-    
-    .pricing-table tr:last-child td {
-      border-bottom: none;
-    }
-    
-    .pricing-table tr:nth-child(even) {
-      background-color: #f8f9fa;
-    }
-    
-    .pricing-table tr:hover {
-      background-color: #e9ecef;
-    }
-    
-    .price {
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
-    
-    .book-btn {
-      display: inline-block;
-      background-color: #0066cc;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: background-color 0.3s ease;
-    }
-    
-    .book-btn:hover {
-      background-color: #0052a3;
-    }
-    
-    .zone-pricing {
-      margin-top: 4rem;
-    }
-    
-    .zone-pricing h2 {
-      color: #0066cc;
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-    
-    .zones-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-    
-    .zone-card {
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      padding: 1.5rem;
-      transition: transform 0.3s ease;
-    }
-    
-    .zone-card:hover {
-      transform: translateY(-5px);
-    }
-    
-    .zone-card h3 {
-      color: #0066cc;
-      margin-top: 0;
-      margin-bottom: 1rem;
-      border-bottom: 1px solid #e9ecef;
-      padding-bottom: 0.5rem;
-    }
-    
-    .zone-price {
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin: 1rem 0;
-    }
-    
-    .zone-cities {
-      margin-top: 1rem;
-    }
-    
-    .zone-cities ul {
-      padding-left: 1.5rem;
-      margin: 0.5rem 0;
-    }
-    
-    .zone-cities li {
-      margin-bottom: 0.5rem;
-    }
-    
-    .zone-cta {
-      display: inline-block;
-      background-color: #0066cc;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 4px;
-      text-decoration: none;
-      font-weight: 500;
-      margin-top: 1rem;
-      transition: background-color 0.3s ease;
-    }
-    
-    .zone-cta:hover {
-      background-color: #0052a3;
-    }
-    
-    .faq-section {
-      margin-top: 4rem;
-      background-color: #f8f9fa;
-      padding: 3rem 2rem;
-      border-radius: 8px;
-    }
-    
-    .faq-section h2 {
-      color: #0066cc;
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-    
-    .faq-item {
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid #e9ecef;
-      padding-bottom: 1.5rem;
-    }
-    
-    .faq-item:last-child {
-      margin-bottom: 0;
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-    
-    .faq-question {
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-      color: #333;
-    }
-    
-    .faq-answer {
-      color: #555;
-    }
-    
-    @media (max-width: 768px) {
-      .pricing-table th, .pricing-table td {
-        padding: 1rem;
-      }
-      
-      .zones-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
-<body>
-  <header>
-    <h1>OBDExpress</h1>
-    <p>Diagnostic auto à domicile - Côte d'Azur</p>
-    <nav>
-      <ul>
-        <li><a href="/">Accueil</a></li>
-        <li><a href="/services">Services</a></li>
-        <li><a href="/zones-intervention">Zones desservies</a></li>
-        <li><a href="/carte">Carte</a></li>
-        <li><a href="/tarifs" class="active">Tarifs</a></li>
-        <li><a href="/#contact">Contact</a></li>
+<body class="bg-gray-100 text-gray-800">
+
+  <header class="bg-blue-700 text-white text-center py-6">
+    <h1 class="text-3xl font-bold">OBDExpress</h1>
+    <p class="text-sm mt-2">Diagnostic auto à domicile - Antibes & alentours</p>
+    <nav class="mt-4">
+      <ul class="flex justify-center gap-4 text-sm">
+        <li><a href="/" class="hover:underline">Accueil</a></li>
+        <li><a href="/services" class="hover:underline">Services</a></li>
+        <li><a href="/zones" class="hover:underline">Zones desservies</a></li>
+        <li><a href="/tarifs" class="underline font-semibold">Tarifs</a></li>
+        <li><a href="/contact" class="hover:underline">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <section class="bg-gray-50 py-12">
-      <div class="max-w-4xl mx-auto px-4">
-        <h1 class="text-3xl font-bold text-center text-blue-700 mb-8">Tarifs & Paiement</h1>
-
-        <div class="grid md:grid-cols-2 gap-8">
-          <!-- Zone standard -->
-          <div class="bg-white rounded-lg shadow p-6 text-center">
-            <h2 class="text-xl font-semibold text-gray-800 mb-2">Zone standard</h2>
-            <p class="text-3xl font-bold text-green-600 mb-2">99 € TTC</p>
-            <p class="text-gray-500 mb-4">Antibes et environs (jusqu'à 15 km)</p>
-            <form action="/paiement/standard" method="POST">
-              <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition">
-                Payer en ligne
-              </button>
-            </form>
-          </div>
-
-          <!-- Zone étendue -->
-          <div class="bg-white rounded-lg shadow p-6 text-center">
-            <h2 class="text-xl font-semibold text-gray-800 mb-2">Zone étendue</h2>
-            <p class="text-3xl font-bold text-yellow-500 mb-2">109 € TTC</p>
-            <p class="text-gray-500 mb-4">Cannes, Cagnes, Grasse, jusqu'à 20 km</p>
-            <form action="/paiement/etendue" method="POST">
-              <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded transition">
-                Payer en ligne
-              </button>
-            </form>
-          </div>
-        </div>
-
-        <!-- Conditions -->
-        <div class="mt-12 text-gray-600 text-sm bg-white p-6 rounded shadow">
-          <h3 class="text-lg font-semibold text-gray-800 mb-2">Conditions d'intervention</h3>
-          <ul class="list-disc ml-5 space-y-2">
-            <li>Déplacement gratuit jusqu'à 15 km d'Antibes</li>
-            <li>Supplément au-delà de 15 km (intégré au tarif de la zone étendue)</li>
-            <li>Devis personnalisé au-delà de 20 km</li>
-            <li>Intervention urgente possible selon disponibilité (contactez-nous avant paiement)</li>
-            <li>Paiement sécurisé via PayPal ou Stripe</li>
+  <main class="max-w-6xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold text-blue-700 text-center mb-8">Nos tarifs</h1>
+    <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">Des prix clairs et transparents pour votre diagnostic automobile à domicile. Choisissez la formule qui vous convient selon votre localisation.</p>
+    
+    <div class="grid md:grid-cols-3 gap-8 mb-16">
+      <!-- Carte Zone Standard -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden border-t-4 border-green-500 flex flex-col">
+        <div class="p-6">
+          <h2 class="text-xl font-bold text-gray-800 mb-2">Zone Standard</h2>
+          <p class="text-gray-600 mb-4">Antibes et Juan-les-Pins</p>
+          <div class="text-3xl font-bold text-blue-700 mb-4">59€</div>
+          <ul class="space-y-2 mb-6">
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Diagnostic complet</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Déplacement inclus</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Rapport détaillé</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Conseils personnalisés</span>
+            </li>
           </ul>
+        </div>
+        <div class="mt-auto p-6 pt-0">
+          <a href="/booking/new?service=standard&zone=Antibes&price=59" class="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center font-semibold py-3 rounded-md transition duration-200">
+            Réserver
+          </a>
+        </div>
+      </div>
+      
+      <!-- Carte Zone Étendue -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden border-t-4 border-yellow-500 flex flex-col">
+        <div class="p-6">
+          <h2 class="text-xl font-bold text-gray-800 mb-2">Zone Étendue</h2>
+          <p class="text-gray-600 mb-4">Biot, Vallauris, Golfe-Juan</p>
+          <div class="text-3xl font-bold text-blue-700 mb-4">99€</div>
+          <ul class="space-y-2 mb-6">
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Diagnostic complet</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Déplacement inclus</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Rapport détaillé</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Conseils personnalisés</span>
+            </li>
+          </ul>
+        </div>
+        <div class="mt-auto p-6 pt-0">
+          <a href="/booking/new?service=etendue&zone=Biot&price=99" class="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center font-semibold py-3 rounded-md transition duration-200">
+            Réserver
+          </a>
+        </div>
+      </div>
+      
+      <!-- Carte Devis Personnalisé -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden border-t-4 border-red-500 flex flex-col">
+        <div class="p-6">
+          <h2 class="text-xl font-bold text-gray-800 mb-2">Autre zone</h2>
+          <p class="text-gray-600 mb-4">Cannes, Nice, Monaco...</p>
+          <div class="text-3xl font-bold text-blue-700 mb-4">Sur devis</div>
+          <ul class="space-y-2 mb-6">
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Diagnostic complet</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Tarif selon distance</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Rapport détaillé</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Conseils personnalisés</span>
+            </li>
+          </ul>
+        </div>
+        <div class="mt-auto p-6 pt-0">
+          <a href="/contact" class="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center font-semibold py-3 rounded-md transition duration-200">
+            Demander un devis
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Section FAQ -->
+    <section class="mt-16">
+      <h2 class="text-2xl font-bold text-center mb-8">Questions fréquentes</h2>
+      
+      <div class="max-w-3xl mx-auto space-y-6">
+        <div class="bg-white rounded-lg shadow-sm p-6">
+          <h3 class="font-bold text-lg mb-2">Combien de temps dure un diagnostic ?</h3>
+          <p class="text-gray-600">Un diagnostic complet dure généralement entre 30 et 45 minutes, selon la complexité du problème et le modèle de votre véhicule.</p>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-sm p-6">
+          <h3 class="font-bold text-lg mb-2">Quels moyens de paiement acceptez-vous ?</h3>
+          <p class="text-gray-600">Nous acceptons les paiements par carte bancaire, en espèces, ou par virement bancaire. Le paiement en ligne est sécurisé par notre partenaire de paiement.</p>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-sm p-6">
+          <h3 class="font-bold text-lg mb-2">Puis-je annuler ou reporter mon rendez-vous ?</h3>
+          <p class="text-gray-600">Oui, vous pouvez annuler ou reporter votre rendez-vous jusqu'à 24 heures avant l'heure prévue sans frais. Pour toute annulation moins de 24 heures avant, des frais peuvent s'appliquer.</p>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h3>OBDExpress</h3>
-          <p>Diagnostic automobile à domicile sur la Côte d'Azur</p>
+  <footer class="bg-gray-800 text-white py-8">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0">
+          <h2 class="text-xl font-bold">OBDExpress</h2>
+          <p class="text-sm text-gray-400">Diagnostic auto à domicile</p>
         </div>
-        <div class="footer-section">
-          <h3>Zones principales</h3>
-          <ul>
-            <li><a href="/diagnostic-auto/antibes">Antibes</a></li>
-            <li><a href="/diagnostic-auto/cannes">Cannes</a></li>
-            <li><a href="/diagnostic-auto/cagnes-sur-mer">Cagnes-sur-Mer</a></li>
+        <div>
+          <ul class="flex flex-wrap gap-4 text-sm">
+            <li><a href="/mentions-legales" class="hover:underline">Mentions légales</a></li>
+            <li><a href="/cgv" class="hover:underline">CGV</a></li>
           </ul>
         </div>
-        <div class="footer-section">
-          <h3>Contact</h3>
-          <p>Tél : 06 00 00 00 00</p>
-          <p>Email : contact@obdexpress.fr</p>
-        </div>
       </div>
-      <p class="copyright">&copy; <%= new Date().getFullYear() %> OBDExpress - Tous droits réservés</p>
+      <div class="mt-6 text-center text-sm text-gray-400">
+        &copy; 2025 OBDExpress - Tous droits réservés
+      </div>
     </div>
   </footer>
+
 </body>
 </html>

@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "clients",
+  "info": {
+    "singularName": "client",
+    "pluralName": "clients",
+    "displayName": "Client",
+    "description": "Informations clients OBDExpress"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nom": {
+      "type": "string",
+      "required": true
+    },
+    "prenom": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "telephone": {
+      "type": "string"
+    },
+    "adresse": {
+      "type": "text"
+    },
+    "ville": {
+      "type": "string"
+    },
+    "code_postal": {
+      "type": "string"
+    },
+    "date_inscription": {
+      "type": "date"
+    },
+    "reservations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::rendez-vous.rendez-vous",
+      "mappedBy": "client"
+    },
+    "paiements": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::paiement.paiement",
+      "mappedBy": "client"
+    },
+    "voitures": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::voiture.voiture",
+      "mappedBy": "client"
+    }
+  }
+}

@@ -6,530 +6,387 @@
   <title>OBDExpress - Diagnostic voiture à domicile</title>
   <meta name="description" content="Diagnostic auto à domicile à Antibes et alentours. Effacement voyant moteur, préparation au contrôle technique. Service rapide, professionnel et local." />
   <link rel="stylesheet" href="/css/styles.css">
-  
-  <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-   
-  <!-- Leaflet JS (chargé avant notre script) -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  
-  <style>
-    .tarif-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-    
-    .tarif-desc {
-      flex: 1;
-    }
-    
-    .cta-button.small {
-      font-size: 0.9rem;
-      padding: 0.5rem 1rem;
-      margin-left: 1rem;
-    }
-    
-    /* Styles pour le header */
-    header {
-      background-color: #0066cc;
-      color: white;
-      padding: 1rem;
-      position: relative;
-    }
-    
-    .header-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    
-    @media (min-width: 768px) {
-      .header-content {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-      }
-      
-      .header-text {
-        text-align: left;
-      }
-      
-      .header-image {
-        margin-left: 2rem;
-      }
-    }
-    
-    .header-image img {
-      max-width: 100%;
-      max-height: 120px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    }
-    
-    /* Styles pour la carte */
-    .map-container {
-      margin: 1.5rem 0;
-    }
-    
-    .map-legend {
-      background: white;
-      padding: 1rem;
-      border-radius: 4px;
-      margin-top: 1rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    
-    .legend-flex {
-      display: flex;
-      justify-content: space-between;
-    }
-    
-    .legend-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 0.5rem;
-    }
-    
-    .legend-color {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      margin-right: 10px;
-    }
-    
-    .zone-standard {
-      background-color: #4CAF50;
-    }
-    
-    .zone-etendue {
-      background-color: #FFC107;
-    }
-    
-    .zone-devis {
-      background-color: #F44336;
-    }
-  </style>
 </head>
-<body>
-  <header>
-    <div class="header-content">
-      <div class="header-text">
-        <h1>OBDExpress</h1>
-        <p>Diagnostic auto à domicile - Antibes & alentours</p>
+<body class="bg-gray-100 text-gray-900">
+
+  <!-- Header -->
+  <header class="bg-blue-700 text-white py-6">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+      <div>
+        <h1 class="text-3xl font-bold">OBDExpress</h1>
+        <p class="text-sm mt-1">Diagnostic auto à domicile - Antibes & alentours</p>
       </div>
-      <div class="header-image">
-        <img src="/images/tech-diagnostic.jpg" alt="Technicien effectuant un diagnostic automobile avec une tablette">
-      </div>
+      <nav class="mt-4 md:mt-0">
+        <ul class="flex gap-4 text-sm">
+          <li><a href="/" class="hover:underline">Accueil</a></li>
+          <li><a href="/services" class="underline font-semibold">Services</a></li>
+          <li><a href="/zones" class="hover:underline">Zones desservies</a></li>
+          <li><a href="/tarifs" class="hover:underline">Tarifs</a></li>
+          <li><a href="/contact" class="hover:underline">Contact</a></li>
+        </ul>
+      </nav>
     </div>
-    <nav>
-      <ul>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#zones">Zones desservies</a></li>
-        <li><a href="#tarifs">Tarifs</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
   </header>
-
-  <main>
-    <section id="hero">
-      <div class="hero-content">
-        <h2>Voyant moteur allumé ? Ne passez pas à côté du contrôle technique</h2>
-        <p>Service de diagnostic automobile à domicile avec valise professionnelle iCarsoft. Intervention rapide sur Antibes, Cannes, Cagnes, Grasse...</p>
-        <a href="#contact" class="cta-button">Prendre rendez-vous</a>
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-4 py-10">
+    <section class="my-12 px-4 max-w-6xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-bold text-center text-brand-600 mb-8 animate-fade-in">
+        Comment ça marche ?
+      </h2>
+      <div class="grid gap-8 md:grid-cols-3">
+        <!-- Étape 1 -->
+        <div class="card hover-lift border-t-4 border-brand-500">
+          <div class="card-body text-center">
+            <div class="text-4xl mb-4 text-brand-500">📞</div>
+            <h3 class="text-xl font-semibold mb-2">1. Appel découverte</h3>
+            <p class="text-gray-600 text-sm">Un rendez-vous téléphonique gratuit de 10 minutes pour comprendre votre problème auto.</p>
+          </div>
+        </div>
+        <!-- Étape 2 -->
+        <div class="card hover-lift border-t-4 border-accent-500">
+          <div class="card-body text-center">
+            <div class="text-4xl mb-4 text-accent-500">📆</div>
+            <h3 class="text-xl font-semibold mb-2">2. Prise de rendez-vous</h3>
+            <p class="text-gray-600 text-sm">Choisissez la date et l'heure de l'intervention à votre domicile selon vos disponibilités.</p>
+          </div>
+        </div>
+        <!-- Étape 3 -->
+        <div class="card hover-lift border-t-4 border-success-500">
+          <div class="card-body text-center">
+            <div class="text-4xl mb-4 text-success-500">🔧</div>
+            <h3 class="text-xl font-semibold mb-2">3. Intervention rapide</h3>
+            <p class="text-gray-600 text-sm">Le diagnostic est réalisé sur place avec rapport détaillé et effacement des défauts si possible.</p>
+          </div>
+        </div>
       </div>
-      <div class="hero-image">
-        <img src="/images/tech-diagnostic.jpg" alt="Technicien effectuant un diagnostic automobile avec une tablette">
+    </section>
+    
+
+    <!-- Hero -->
+    <section class="text-center mb-12 bg-gray-800 text-white p-8 rounded-xl shadow-lg">
+      <h2 class="text-3xl font-bold mb-4 animate-fade-in">⚠️ Voyant moteur allumé ?</h2>
+      <p class="mb-6 text-lg animate-slide-up">
+        Diagnostic automobile à domicile avec valise iCarsoft. Antibes, Cannes, Cagnes, Grasse...
+      </p>
+      <div class="flex justify-center gap-4 flex-wrap">
+        <a href="tel:+33646022468" class="btn bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-6 rounded-lg shadow-button hover:shadow-button-hover transition duration-300 animate-pulse-custom">
+          📞 Appel immédiat
+        </a>
+        <a href="https://wa.me/33646022468?text=Bonjour%2C%20je%20souhaite%20un%20diagnostic%20automobile%20rapide%20à%20domicile." 
+           target="_blank"
+           class="btn bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-6 rounded-lg shadow-button hover:shadow-button-hover transition duration-300">
+          💬 WhatsApp direct
+        </a>
+      </div>
+    </section>
+    
+    
+
+    <!-- Services -->
+    <section id="services" class="bg-gray-800 text-white rounded-lg p-6 shadow mb-12">
+      <h2 class="text-2xl font-bold text-center text-blue-700 mb-8">Nos services</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto mb-2 rounded-full border-4 border-blue-400 flex items-center justify-center bg-gray-900">
+            <span class="text-orange-400 text-2xl">🛠️</span>
+          </div>
+          <p class="text-sm font-semibold">Lecture codes défaut</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto mb-2 rounded-full border-4 border-green-400 flex items-center justify-center bg-gray-900">
+            <span class="text-green-300 text-2xl">🔧</span>
+          </div>
+          <p class="text-sm font-semibold">Valise iCarsoft CR Max</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto mb-2 rounded-full border-4 border-purple-400 flex items-center justify-center bg-gray-900">
+            <span class="text-purple-300 text-2xl">📄</span>
+          </div>
+          <p class="text-sm font-semibold">Rapport détaillé</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 mx-auto mb-2 rounded-full border-4 border-yellow-400 flex items-center justify-center bg-gray-900">
+            <span class="text-yellow-300 text-2xl">✅</span>
+          </div>
+          <p class="text-sm font-semibold">Conseils contrôle technique</p>
+        </div>
+      </div>
+      <p class="mt-6 text-center text-sm">Diagnostic professionnel avec équipement de dernière génération</p>
+    </section>
+
+    <!-- Zones desservies -->
+    <section id="zones" class="mb-12">
+      <h2 class="text-2xl font-bold text-center mb-4">Zones desservies</h2>
+      <p class="text-center mb-6">Antibes, Cannes, Cagnes-sur-Mer, Grasse, Vallauris, Biot, Le Cannet...</p>
+      <div id="map" class="h-80 w-full rounded shadow mb-6"></div>
+      <div class="max-w-xl mx-auto bg-white p-4 rounded shadow">
+        <h3 class="font-semibold mb-2">Légende</h3>
+        <ul class="text-sm space-y-1">
+          <li><span class="inline-block w-4 h-4 bg-green-500 rounded-full mr-2"></span>Zone standard - 99€ TTC</li>
+          <li><span class="inline-block w-4 h-4 bg-yellow-400 rounded-full mr-2"></span>Zone étendue - 109€ TTC</li>
+          <li><span class="inline-block w-4 h-4 bg-red-500 rounded-full mr-2"></span>Sur devis</li>
+        </ul>
       </div>
     </section>
 
-    <section id="services">
-      <h2>Nos services</h2>
-      <ul>
-        <li>Lecture et effacement de codes défaut (voyant moteur)</li>
-        <li>Diagnostic multimarque avec valise iCarsoft CR Max</li>
-        <li>Remise de rapport de diagnostic sur demande</li>
-        <li>Conseils avant contrôle technique</li>
-      </ul>
-    </section>
-
-    <section id="zones">
-      <h2>Zones desservies</h2>
-      <p>Antibes (zone standard), Cannes, Cagnes-sur-Mer, Grasse, Vallauris, Biot, Le Cannet...</p>
-      <p>Au-delà de 15 km, un supplément peut s'appliquer.</p>
-      
-      <!-- Carte des zones d'intervention -->
-      <div class="map-container">
-        <div id="map" style="height: 350px; width: 90%; max-width: 900px; margin: 20px auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"></div>
+    <!-- Tarifs -->
+    <section id="tarifs" class="mb-16">
+      <h2 class="text-2xl font-bold text-center text-blue-700 mb-8">Nos tarifs</h2>
+      <div class="grid gap-6 md:grid-cols-3 max-w-5xl mx-auto">
+        <!-- Carte Zone Standard -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105 border-t-4 border-green-500">
+          <div class="p-5">
+            <div class="flex justify-between items-center mb-3">
+              <h3 class="text-xl font-bold">Zone Standard</h3>
+              <span class="inline-block w-4 h-4 bg-green-500 rounded-full"></span>
+            </div>
+            <div class="text-3xl font-bold text-blue-700 mb-4">99€ <span class="text-sm text-gray-500 font-normal">TTC</span></div>
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Antibes et environs</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Rayon de 15km</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Déplacement inclus</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Rapport de diagnostic</span>
+              </li>
+            </ul>
+            <a href="/booking/new?service=standard&zone=Antibes&price=99" class="block w-full bg-blue-700 hover:bg-blue-800 text-white text-center py-3 rounded-md transition">
+              Prendre rendez-vous
+            </a>
+          </div>
+        </div>
         
-        <div class="map-legend">
-          <h3>Légende</h3>
-          <div class="legend-flex">
-            <div class="legend-item">
-              <div class="legend-color zone-standard"></div>
-              <div>Zone standard - 99€ TTC</div>
+        <!-- Carte Zone Étendue -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105 border-t-4 border-yellow-400">
+          <div class="p-5">
+            <div class="flex justify-between items-center mb-3">
+              <h3 class="text-xl font-bold">Zone Étendue</h3>
+              <span class="inline-block w-4 h-4 bg-yellow-400 rounded-full"></span>
             </div>
-            <div class="legend-item">
-              <div class="legend-color zone-etendue"></div>
-              <div>Zone étendue - 109€ TTC</div>
+            <div class="text-3xl font-bold text-blue-700 mb-4">109€ <span class="text-sm text-gray-500 font-normal">TTC</span></div>
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Cannes, Cagnes-sur-Mer...</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Rayon de 15 à 20km</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Déplacement inclus</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Rapport de diagnostic</span>
+              </li>
+            </ul>
+            <a href="/booking/new?service=etendue&zone=Cannes&price=109" class="block w-full bg-blue-700 hover:bg-blue-800 text-white text-center py-3 rounded-md transition">
+              Prendre rendez-vous
+            </a>
+          </div>
+        </div>
+        
+        <!-- Carte Sur Devis -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105 border-t-4 border-red-500">
+          <div class="p-5">
+            <div class="flex justify-between items-center mb-3">
+              <h3 class="text-xl font-bold">Hors Zone</h3>
+              <span class="inline-block w-4 h-4 bg-red-500 rounded-full"></span>
             </div>
-            <div class="legend-item">
-              <div class="legend-color zone-devis"></div>
-              <div>Sur devis (au-delà de 20km)</div>
+            <div class="text-3xl font-bold text-blue-700 mb-4">Sur devis</div>
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Au-delà de 20km</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Tarif personnalisé</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Frais de déplacement adaptés</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Rapport de diagnostic</span>
+              </li>
+            </ul>
+            <a href="/contact" class="block w-full bg-red-600 hover:bg-red-700 text-white text-center py-3 rounded-md transition">
+              Demander un devis
+            </a>
+          </div>
+        </div>
+      </div>
+      <p class="text-center text-gray-600 mt-6">Paiement sécurisé par carte bancaire ou PayPal. Paiement en 4x sans frais disponible.</p>
+    </section>
+
+    <!-- Témoignages -->
+    <section class="mb-16 bg-gray-50 py-12 rounded-lg">
+      <h2 class="text-2xl font-bold text-center text-blue-700 mb-8">Ce que nos clients disent</h2>
+      <div class="max-w-5xl mx-auto px-4">
+        <div class="grid gap-6 md:grid-cols-3">
+          <!-- Témoignage 1 -->
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="text-yellow-400 flex">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              </div>
             </div>
+            <p class="text-gray-600 mb-4">"Le technicien est arrivé à l'heure, super pro. Le voyant moteur disparu en 10 minutes. Merci !"</p>
+            <div class="font-semibold">Laurent D.</div>
+            <div class="text-sm text-gray-500">Antibes</div>
+          </div>
+          
+          <!-- Témoignage 2 -->
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="text-yellow-400 flex">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">"Service impeccable ! Diagnostic précis et conseils judicieux pour éviter des réparations coûteuses. Je recommande vivement."</p>
+            <div class="font-semibold">Sophie M.</div>
+            <div class="text-sm text-gray-500">Cannes</div>
+          </div>
+          
+          <!-- Témoignage 3 -->
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="text-yellow-400 flex">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-4">"Très pratique de ne pas avoir à se déplacer au garage. Intervention rapide et efficace, exactement ce qu'il me fallait avant le contrôle technique."</p>
+            <div class="font-semibold">Thomas B.</div>
+            <div class="text-sm text-gray-500">Biot</div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="tarifs">
-      <h2>Tarifs</h2>
-      <ul>
-        <li class="tarif-item">
-          <div class="tarif-desc"><strong>99 € TTC</strong> à Antibes et proches environs</div>
-          <a href="/payment/checkout?service=Diagnostic%20Complet&ville=antibes" class="cta-button small">Payer en ligne</a>
-        </li>
-        <li class="tarif-item">
-          <div class="tarif-desc"><strong>109 € TTC</strong> (ex : Cannes, Cagnes, Vallauris...)</div>
-          <a href="/payment/checkout?service=Diagnostic%20Complet&ville=cannes" class="cta-button small">Payer en ligne</a>
-        </li>
-        <li>Sur devis au-delà de 20 km</li>
-      </ul>
-      <p>Paiement possible en 4 fois via PayPal.</p>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Réservez votre diagnostic ou posez votre question :</p>
-      <form action="/contact" method="post">
-        <input type="text" name="nom" placeholder="Votre nom" required>
-        <input type="tel" name="tel" placeholder="Votre téléphone" required>
-        <input type="email" name="email" placeholder="Votre email">
-        <textarea name="message" placeholder="Décrivez votre problème"></textarea>
-        <button type="submit">Envoyer</button>
-      </form>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="footer-container">
-      <div class="footer-section">
-        <h3>OBDExpress</h3>
-        <p>Diagnostic automobile à domicile sur la Côte d'Azur</p>
-        <p>SIRET: 123 456 789 00010</p>
-      </div>
-      
-      <div class="footer-section">
-        <h3>Liens rapides</h3>
-        <ul>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#zones">Zones desservies</a></li>
-          <li><a href="#tarifs">Tarifs</a></li>
-          <li><a href="/mentions-legales">Mentions légales</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-section">
-        <h3>Contact</h3>
-        <ul class="contact-info">
-          <li><i class="icon-phone"></i> 06 XX XX XX XX</li>
-          <li><i class="icon-mail"></i> contact@obdexpress.fr</li>
-          <li><i class="icon-map"></i> Antibes, Côte d'Azur</li>
-        </ul>
-      </div>
-      
-      <div class="footer-section">
-        <h3>Suivez-nous</h3>
-        <div class="social-links">
-          <a href="#" class="social-link"><i class="icon-facebook"></i></a>
-          <a href="#" class="social-link"><i class="icon-instagram"></i></a>
-          <a href="#" class="social-link"><i class="icon-linkedin"></i></a>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+      <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="font-semibold text-lg mb-2">OBDExpress</h3>
+          <p>Diagnostic à domicile sur Antibes & alentours</p>
+          <p>SIRET : 483 797 213 00061</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-lg mb-2">Liens utiles</h3>
+          <ul class="space-y-1">
+            <li><a href="/services" class="hover:underline">Services</a></li>
+            <li><a href="/zones" class="hover:underline">Zones desservies</a></li>
+            <li><a href="/tarifs" class="hover:underline">Tarifs</a></li>
+            <li><a href="/cgv" class="hover:underline">CGV</a></li>
+            <li><a href="/mentions-legales" class="hover:underline">Mentions légales</a></li>
+            <li><a href="/politique-confidentialite" class="hover:underline">Politique de confidentialité</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold text-lg mb-2">Contact</h3>
+          <p>06 46 02 24 68</p>
+          <p>aurelien@obdexpress.fr</p>
+          <p>Antibes & alentours</p>
         </div>
       </div>
-    </div>
-    
-    <div class="footer-bottom">
-      <p>&copy; <%= new Date().getFullYear() %> OBDExpress - Tous droits réservés</p>
-    </div>
-  </footer>
-  
-  <style>
-    .site-footer {
-      background-color: #1a1a1a;
-      color: #f5f5f5;
-      padding: 3rem 0 1rem;
-      margin-top: 3rem;
-    }
-    
-    .footer-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      padding: 0 2rem;
-    }
-    
-    .footer-section {
-      flex: 1;
-      min-width: 200px;
-      margin-bottom: 2rem;
-      padding-right: 1rem;
-    }
-    
-    .footer-section h3 {
-      color: #ffffff;
-      margin-bottom: 1rem;
-      font-size: 1.2rem;
-      position: relative;
-      padding-bottom: 0.5rem;
-    }
-    
-    .footer-section h3:after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 40px;
-      height: 2px;
-      background-color: #4CAF50;
-    }
-    
-    .footer-section ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    
-    .footer-section ul li {
-      margin-bottom: 0.5rem;
-    }
-    
-    .footer-section a {
-      color: #cccccc;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    
-    .footer-section a:hover {
-      color: #4CAF50;
-    }
-    
-    .contact-info li {
-      display: flex;
-      align-items: center;
-      margin-bottom: 0.8rem;
-    }
-    
-    .social-links {
-      display: flex;
-      gap: 1rem;
-    }
-    
-    .social-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background-color: #333;
-      color: #fff;
-      transition: all 0.3s;
-    }
-    
-    .social-link:hover {
-      background-color: #4CAF50;
-      transform: translateY(-3px);
-    }
-    
-    .footer-bottom {
-      text-align: center;
-      padding-top: 1.5rem;
-      margin-top: 1.5rem;
-      border-top: 1px solid #333;
-    }
-    
-    @media (max-width: 768px) {
-      .footer-container {
-        flex-direction: column;
-      }
-      
-      .footer-section {
-        width: 100%;
-        padding-right: 0;
-      }
-    }
-    
-    /* Icônes simples avec CSS */
-    [class^="icon-"] {
-      display: inline-block;
-      width: 1em;
-      height: 1em;
-      margin-right: 0.5rem;
-    }
-    
-    .icon-phone:before {
-      content: '📞';
-    }
-    
-    .icon-mail:before {
-      content: '✉️';
-    }
-    
-    .icon-map:before {
-      content: '📍';
-    }
-    
-    .icon-facebook:before {
-      content: 'f';
-      font-weight: bold;
-    }
-    
-    .icon-instagram:before {
-      content: 'i';
-      font-weight: bold;
-    }
-    
-    .icon-linkedin:before {
-      content: 'l';
-      font-weight: bold;
-    }
-  </style>
-  
-  <!-- Script pour initialiser la carte Leaflet -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Initialisation de la carte centrée sur Antibes
-      const map = L.map('map', {
-        zoomControl: true,
-        scrollWheelZoom: false, // Désactive le zoom avec la molette pour éviter les problèmes sur mobile
-        dragging: !L.Browser.mobile, // Désactive le déplacement sur mobile par défaut
-        tap: !L.Browser.mobile // Désactive le tap handler sur mobile
-      }).setView([43.5800, 7.1250], 10);
-      
-      // Ajout de la couche de carte OpenStreetMap avec un style plus clair
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 19
+      <div class="mt-8 text-center text-sm text-gray-400 border-t border-gray-700 pt-4">
+        &copy; <%= new Date().getFullYear() %> OBDExpress - Tous droits réservés
+      </div>
+    </footer>
+
+    <!-- Script pour la carte Leaflet -->
+    <script>
+      const map = L.map('map').setView([43.5800, 7.1250], 11);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
       }).addTo(map);
-      
-      // Récupération des données de villes depuis l'API
+
       fetch('/api/cities')
-        .then(response => response.json())
+        .then(res => res.json())
         .then(cities => {
-          // Pour chaque ville, ajouter un marqueur
           cities.forEach(city => {
-            // Déterminer la couleur du marqueur en fonction du prix
-            let markerColor;
-            let zoneType;
-            
-            if (!city.price || city.price === 0) {
-              markerColor = '#F44336'; // Rouge pour les zones sur devis
-              zoneType = 'Sur devis';
-            } else if (city.price <= 99) {
-              markerColor = '#4CAF50'; // Vert pour la zone standard
-              zoneType = 'Zone standard - 99€ TTC';
-            } else {
-              markerColor = '#FFC107'; // Jaune pour la zone étendue
-              zoneType = 'Zone étendue - 109€ TTC';
-            }
-            
-            // Créer une icône personnalisée plus visible
+            let color = city.price <= 99 ? '#4CAF50' : city.price > 99 ? '#FFC107' : '#F44336';
+            let zone = city.price <= 99 ? 'Zone standard - 99€ TTC' :
+                       city.price > 99 ? 'Zone étendue - 109€ TTC' :
+                       'Sur devis';
+
             const markerIcon = L.divIcon({
               className: 'custom-marker',
-              html: `<div style="background-color: ${markerColor}; width: 14px; height: 14px; border-radius: 50%; border: 3px solid white; box-shadow: 0 1px 3px rgba(0,0,0,0.3);"></div>`,
-              iconSize: [20, 20],
-              iconAnchor: [10, 10]
+              html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%; border: 2px solid white;"></div>`,
+              iconSize: [16, 16],
+              iconAnchor: [8, 8]
             });
-            
-            // Ajouter le marqueur à la carte
+
             if (city.lat && city.lng) {
-              const marker = L.marker([city.lat, city.lng], { icon: markerIcon }).addTo(map);
-              
-              // Ajouter un popup avec les informations de la ville
-              marker.bindPopup(`
-                <div style="text-align: center; padding: 5px;">
-                  <strong style="font-size: 16px;">${city.name}</strong><br>
-                  <span style="color: ${markerColor}; font-weight: bold;">${zoneType}</span><br>
-                  <a href="/diagnostic-auto/${city.id}" style="display: inline-block; margin-top: 8px; padding: 5px 10px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 4px;">Voir les détails</a>
-                </div>
-              `, { maxWidth: 200 });
+              L.marker([city.lat, city.lng], { icon: markerIcon })
+                .addTo(map)
+                .bindPopup(`<strong>${city.name}</strong><br>${zone}<br><a href="/diagnostic-auto/${city.id}">Voir les détails</a>`);
             }
           });
-          
-          // Ajouter des cercles pour visualiser les zones
-          // Zone standard (Antibes)
-          const antibes = cities.find(city => city.id === 'antibes');
-          if (antibes && antibes.lat && antibes.lng) {
-            L.circle([antibes.lat, antibes.lng], {
-              color: '#4CAF50',
-              fillColor: '#4CAF50',
-              fillOpacity: 0.15,
-              weight: 2,
-              radius: 5000 // 5km
-            }).addTo(map);
+
+          const antibes = cities.find(c => c.id === 'antibes');
+          if (antibes) {
+            [[5000, '#4CAF50'], [15000, '#FFC107'], [20000, '#F44336']].forEach(([r, c]) =>
+              L.circle([antibes.lat, antibes.lng], {
+                color: c,
+                fillColor: c,
+                fillOpacity: 0.1,
+                radius: r
+              }).addTo(map)
+            );
           }
-          
-          // Zone étendue (15km)
-          if (antibes && antibes.lat && antibes.lng) {
-            L.circle([antibes.lat, antibes.lng], {
-              color: '#FFC107',
-              fillColor: '#FFC107',
-              fillOpacity: 0.12,
-              weight: 2,
-              radius: 15000 // 15km
-            }).addTo(map);
-          }
-          
-          // Zone sur devis (20km et au-delà)
-          if (antibes && antibes.lat && antibes.lng) {
-            L.circle([antibes.lat, antibes.lng], {
-              color: '#F44336',
-              fillColor: '#F44336',
-              fillOpacity: 0.1,
-              weight: 2,
-              radius: 20000 // 20km
-            }).addTo(map);
-          }
-          
-          // Ajout des contrôles de zoom en bas à droite
-          map.zoomControl.setPosition('bottomright');
-          
-          // Ajout d'un bouton pour activer/désactiver le déplacement sur mobile
-          if (L.Browser.mobile) {
-            const dragButton = L.control({ position: 'topleft' });
-            let isDraggingEnabled = false;
-            
-            dragButton.onAdd = function() {
-              const div = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
-              div.innerHTML = '<a href="#" title="Activer/désactiver le déplacement" style="font-weight: bold; display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: white;">🔄</a>';
-              
-              div.onclick = function() {
-                if (isDraggingEnabled) {
-                  map.dragging.disable();
-                  isDraggingEnabled = false;
-                } else {
-                  map.dragging.enable();
-                  isDraggingEnabled = true;
-                }
-                return false;
-              };
-              
-              return div;
-            };
-            
-            dragButton.addTo(map);
-          }
-        })
-        .catch(error => {
-          console.error('Erreur lors du chargement des données:', error);
-          document.getElementById('map').innerHTML = '<p class="error">Impossible de charger la carte. Veuillez réessayer plus tard.</p>';
         });
-    });
-  </script>
-</body>
+    </script>
+  </body>
 </html>

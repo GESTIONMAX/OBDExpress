@@ -1,6 +1,8 @@
 # Environnement
 .env
 .env.local
+.env.development
+.env.production
 
 # Dépendances
 node_modules/
@@ -9,6 +11,14 @@ node_modules/
 .cache/
 build/
 dist/
+public/uploads/
+
+# Strapi
+.strapi/
+.tmp/
+.strapi-updater.json
+license.txt
+exports/
 
 # Logs
 logs
@@ -20,3 +30,15 @@ yarn-error.log*
 # Système
 .DS_Store
 Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Autres
+*.tgz
+*.zip
+TODO.md
+README.md.old

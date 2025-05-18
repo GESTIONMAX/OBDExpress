@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <meta name="description" content="Confirmation de votre réservation de diagnostic automobile avec OBDExpress." />
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+  <!-- Header -->
+  <header class="bg-blue-700 text-white py-6">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+      <div>
+        <h1 class="text-3xl font-bold">OBDExpress</h1>
+        <p class="text-sm mt-1">Diagnostic auto à domicile - Antibes & alentours</p>
+      </div>
+      <nav class="mt-4 md:mt-0">
+        <ul class="flex gap-4 text-sm">
+          <li><a href="/" class="hover:underline">Accueil</a></li>
+          <li><a href="/services" class="hover:underline">Services</a></li>
+          <li><a href="/zones" class="hover:underline">Zones desservies</a></li>
+          <li><a href="/tarifs" class="hover:underline">Tarifs</a></li>
+          <li><a href="/contact" class="hover:underline">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-4 py-10">
+    <div class="mb-8 text-center">
+      <h2 class="text-3xl font-bold text-brand-600 mb-2 animate-fade-in">Confirmation de réservation</h2>
+      <p class="text-gray-600 animate-slide-up">Merci pour votre réservation ! Voici les détails de votre demande.</p>
+    </div>
+
+    <!-- Étapes de réservation -->
+    <div class="flex justify-between mb-12 relative">
+      <div class="hidden sm:block absolute top-1/2 w-full h-1 bg-gray-200 -z-10"></div>
+      
+      <!-- Étape 1 -->
+      <div class="flex flex-col items-center">
+        <div class="w-10 h-10 rounded-full bg-green-500 text-white flex-center mb-2">✓</div>
+        <span class="text-sm font-medium">Formulaire</span>
+      </div>
+      
+      <!-- Étape 2 -->
+      <div class="flex flex-col items-center">
+        <div class="w-10 h-10 rounded-full bg-green-500 text-white flex-center mb-2">✓</div>
+        <span class="text-sm font-medium">Paiement</span>
+      </div>
+      
+      <!-- Étape 3 -->
+      <div class="flex flex-col items-center">
+        <div class="w-10 h-10 rounded-full bg-brand-600 text-white flex-center mb-2">3</div>
+        <span class="text-sm font-medium">Confirmation</span>
+      </div>
+    </div>
+
+    <!-- Alerte de succès -->
+    <div class="alert-success mb-8">
+      <div class="flex items-center">
+        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+        <p class="font-medium">Votre réservation a été enregistrée avec succès !</p>
+      </div>
+      <p class="mt-2">Un email de confirmation a été envoyé à l'adresse <strong><%= booking.customerEmail %></strong>.</p>
+    </div>
+
+    <!-- Détails de la réservation -->
+    <div class="card mb-8">
+      <div class="card-header">
+        <h3 class="text-xl font-semibold">Détails de votre réservation</h3>
+        <p class="text-gray-500 text-sm">Numéro de réservation: <strong><%= booking.id %></strong></p>
+      </div>
+      
+      <div class="card-body">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Informations client -->
+          <div>
+            <h4 class="font-semibold mb-3 text-brand-700">Informations personnelles</h4>
+            <ul class="space-y-2 text-gray-700">
+              <li><span class="text-gray-500">Nom:</span> <%= booking.customerName %></li>
+              <li><span class="text-gray-500">Email:</span> <%= booking.customerEmail %></li>
+              <li><span class="text-gray-500">Téléphone:</span> <%= booking.customerPhone %></li>
+              <li><span class="text-gray-500">Adresse:</span> <%= booking.customerAddress %></li>
+              <li><span class="text-gray-500">Ville:</span> <%= booking.city %></li>
+            </ul>
+          </div>
+          
+          <!-- Informations véhicule -->
+          <div>
+            <h4 class="font-semibold mb-3 text-brand-700">Informations véhicule</h4>
+            <ul class="space-y-2 text-gray-700">
+              <li><span class="text-gray-500">Type:</span> <%= booking.vehicleType %></li>
+              <li><span class="text-gray-500">Marque:</span> <%= booking.vehicleMake %></li>
+              <li><span class="text-gray-500">Modèle:</span> <%= booking.vehicleModel %></li>
+              <li><span class="text-gray-500">Année:</span> <%= booking.vehicleYear %></li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Service et disponibilités -->
+        <div class="mt-6">
+          <h4 class="font-semibold mb-3 text-brand-700">Service et disponibilités</h4>
+          <ul class="space-y-2 text-gray-700">
+            <li><span class="text-gray-500">Service:</span> <%= booking.serviceType.replace('_', ' ').charAt(0).toUpperCase() + booking.serviceType.replace('_', ' ').slice(1) %></li>
+            <li>
+              <span class="text-gray-500">Dates préférées:</span>
+              <ul class="list-disc list-inside ml-4 mt-1">
+                <% 
+                  // Vérifie si preferredDates est un tableau ou une chaîne JSON
+                  let dates = booking.preferredDates;
+                  if (typeof dates === 'string') {
+                    try {
+                      dates = JSON.parse(dates);
+                    } catch (e) {
+                      dates = [dates]; // Si impossible à parser, on le traite comme une seule date
+                    }
+                  }
+                  // S'assure que dates est un tableau
+                  if (!Array.isArray(dates)) {
+                    dates = [dates];
+                  }
+
+                  // Affiche chaque date
+                  dates.forEach(date => { 
+                %>
+                  <li><%= new Date(date).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></li>
+                <% }); %>
+              </ul>
+            </li>
+            <li>
+              <span class="text-gray-500">Créneaux préférés:</span>
+              <ul class="list-disc list-inside ml-4 mt-1">
+                <% 
+                  // Vérifie si preferredTimeSlots est un tableau ou une chaîne JSON
+                  let timeSlots = booking.preferredTimeSlots;
+                  if (typeof timeSlots === 'string') {
+                    try {
+                      timeSlots = JSON.parse(timeSlots);
+                    } catch (e) {
+                      timeSlots = [timeSlots]; // Si impossible à parser, on le traite comme un seul créneau
+                    }
+                  }
+                  // S'assure que timeSlots est un tableau
+                  if (!Array.isArray(timeSlots)) {
+                    timeSlots = [timeSlots];
+                  }
+
+                  // Affiche chaque créneau horaire
+                  timeSlots.forEach(slot => { 
+                %>
+                  <li><%= slot === 'morning' ? 'Matin (8h-12h)' : slot === 'afternoon' ? 'Après-midi (12h-17h)' : 'Soir (17h-20h)' %></li>
+                <% }); %>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Problème décrit -->
+        <div class="mt-6">
+          <h4 class="font-semibold mb-3 text-brand-700">Description du problème</h4>
+          <div class="p-3 bg-gray-50 rounded-lg text-gray-700">
+            <%= booking.problemDescription %>
+          </div>
+        </div>
+        
+        <% if(booking.notes) { %>
+        <!-- Notes supplémentaires -->
+        <div class="mt-6">
+          <h4 class="font-semibold mb-3 text-brand-700">Notes supplémentaires</h4>
+          <div class="p-3 bg-gray-50 rounded-lg text-gray-700">
+            <%= booking.notes %>
+          </div>
+        </div>
+        <% } %>
+        
+        <!-- Paiement -->
+        <div class="mt-6">
+          <h4 class="font-semibold mb-3 text-brand-700">Paiement</h4>
+          <ul class="space-y-2 text-gray-700">
+            <li><span class="text-gray-500">Montant:</span> <span class="font-semibold"><%= booking.price %>€ TTC</span></li>
+            <li><span class="text-gray-500">Méthode:</span> <%= booking.paymentMethod %></li>
+            <li><span class="text-gray-500">Statut:</span> 
+              <% if(booking.paymentStatus === 'paid') { %>
+                <span class="text-green-600 font-medium">Payé</span>
+              <% } else if(booking.paymentStatus === 'pending') { %>
+                <span class="text-yellow-600 font-medium">En attente</span>
+              <% } else { %>
+                <span class="text-red-600 font-medium">Non payé</span>
+              <% } %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prochaines étapes -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="text-xl font-semibold">Prochaines étapes</h3>
+      </div>
+      
+      <div class="card-body">
+        <ol class="space-y-4">
+          <li class="flex">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-100 text-brand-600 flex-center mr-3">1</div>
+            <div>
+              <h4 class="font-medium text-gray-900">Confirmation de votre créneau</h4>
+              <p class="text-gray-600 mt-1">Nous allons examiner vos disponibilités et vous contacter par téléphone ou email pour confirmer la date et l'heure exactes de l'intervention.</p>
+            </div>
+          </li>
+          
+          <li class="flex">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-100 text-brand-600 flex-center mr-3">2</div>
+            <div>
+              <h4 class="font-medium text-gray-900">Rappel avant l'intervention</h4>
+              <p class="text-gray-600 mt-1">Vous recevrez un rappel la veille de l'intervention avec les détails du rendez-vous.</p>
+            </div>
+          </li>
+          
+          <li class="flex">
+            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-100 text-brand-600 flex-center mr-3">3</div>
+            <div>
+              <h4 class="font-medium text-gray-900">Jour de l'intervention</h4>
+              <p class="text-gray-600 mt-1">Notre technicien se présentera à l'adresse indiquée à l'heure convenue. Assurez-vous que le véhicule soit accessible et que les clés soient disponibles.</p>
+            </div>
+          </li>
+        </ol>
+        
+        <div class="alert-info mt-6">
+          <div class="flex items-center">
+            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <p class="font-medium">Besoin de modifier votre réservation ?</p>
+          </div>
+          <p class="mt-2">Contactez-nous au <a href="tel:0646022468" class="text-brand-600 font-medium hover:underline">06 46 02 24 68</a> ou par email à <a href="mailto:aurelien@obdexpress.fr" class="text-brand-600 font-medium hover:underline">aurelien@obdexpress.fr</a>.</p>
+        </div>
+      </div>
+      
+      <div class="card-footer flex justify-between items-center">
+        <a href="/" class="btn-secondary">Retour à l'accueil</a>
+        <a href="/payment/paiement-reservation/<%= booking.id %>" class="btn-primary flex items-center">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+          </svg>
+          Payer maintenant
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8 mt-12">
+    <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="font-semibold text-lg mb-2">OBDExpress</h3>
+        <p>Diagnostic à domicile sur Antibes & alentours</p>
+        <p>SIRET : 483 797 213 00061</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-lg mb-2">Liens utiles</h3>
+        <ul class="space-y-1">
+          <li><a href="/services" class="hover:underline">Services</a></li>
+          <li><a href="/zones" class="hover:underline">Zones desservies</a></li>
+          <li><a href="/tarifs" class="hover:underline">Tarifs</a></li>
+          <li><a href="/cgv" class="hover:underline">CGV</a></li>
+          <li><a href="/mentions-legales" class="hover:underline">Mentions légales</a></li>
+          <li><a href="/politique-confidentialite" class="hover:underline">Politique de confidentialité</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-semibold text-lg mb-2">Contact</h3>
+        <p>06 46 02 24 68</p>
+        <p>aurelien@obdexpress.fr</p>
+        <p>Antibes & alentours</p>
+      </div>
+    </div>
+    <div class="mt-8 text-center text-sm text-gray-400 border-t border-gray-700 pt-4">
+      &copy; <%= new Date().getFullYear() %> OBDExpress - Tous droits réservés
+    </div>
+  </footer>
+</body>
+</html>

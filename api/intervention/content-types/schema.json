@@ -1,0 +1,84 @@
+{
+  "kind": "collectionType",
+  "collectionName": "interventions",
+  "info": {
+    "singularName": "intervention",
+    "pluralName": "interventions",
+    "displayName": "Intervention",
+    "description": "Interventions de diagnostic réalisées par les techniciens"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "dateDebut": {
+      "type": "datetime",
+      "required": true
+    },
+    "dateFin": {
+      "type": "datetime",
+      "required": true
+    },
+    "rapport": {
+      "type": "richtext",
+      "required": true
+    },
+    "codesDiagnostic": {
+      "type": "json",
+      "description": "Codes d'erreur OBD détectés"
+    },
+    "photos": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": ["images"]
+    },
+    "statut": {
+      "type": "enumeration",
+      "enum": [
+        "en_cours",
+        "terminee",
+        "annulee"
+      ],
+      "default": "en_cours",
+      "required": true
+    },
+    "recommandations": {
+      "type": "richtext",
+      "description": "Recommandations du technicien suite au diagnostic"
+    },
+    "coutTotal": {
+      "type": "decimal",
+      "min": 0
+    },
+    "service": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::service.service",
+      "inversedBy": "interventions"
+    },
+    "technicien": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::technicien.technicien",
+      "inversedBy": "interventions"
+    },
+    "voiture": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::voiture.voiture",
+      "inversedBy": "interventions"
+    },
+    "rendezVous": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::rendez-vous.rendez-vous",
+      "mappedBy": "intervention"
+    },
+    "reference": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    }
+  }
+}

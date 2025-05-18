@@ -1,0 +1,53 @@
+{
+  "kind": "collectionType",
+  "collectionName": "paiements",
+  "info": {
+    "singularName": "paiement",
+    "pluralName": "paiements",
+    "displayName": "Paiement",
+    "description": "Paiements liés aux réservations"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "montant": {
+      "type": "decimal",
+      "required": true
+    },
+    "date_paiement": {
+      "type": "date"
+    },
+    "statut": {
+      "type": "enumeration",
+      "enum": ["en_attente", "effectué", "échoué"],
+      "default": "en_attente"
+    },
+    "methode": {
+      "type": "enumeration",
+      "enum": ["stripe", "paypal", "virement", "espèces"],
+      "default": "stripe"
+    },
+    "reference": {
+      "type": "string"
+    },
+    "stripe_session_id": {
+      "type": "uid"
+    },
+    "facture_url": {
+      "type": "string"
+    },
+    "client": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::client.client",
+      "inversedBy": "paiements"
+    },
+    "reservation": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::rendez-vous.rendez-vous"
+    }
+  }
+}

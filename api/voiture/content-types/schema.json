@@ -1,0 +1,79 @@
+{
+  "kind": "collectionType",
+  "collectionName": "voitures",
+  "info": {
+    "singularName": "voiture",
+    "pluralName": "voitures",
+    "displayName": "Voiture",
+    "description": "Véhicules des clients pour les diagnostics"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "marque": {
+      "type": "string",
+      "required": true
+    },
+    "modele": {
+      "type": "string",
+      "required": true
+    },
+    "annee": {
+      "type": "integer",
+      "required": true,
+      "min": 1900,
+      "max": 2100
+    },
+    "immatriculation": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "kilometrage": {
+      "type": "integer",
+      "min": 0
+    },
+    "motorisation": {
+      "type": "enumeration",
+      "enum": [
+        "essence",
+        "diesel",
+        "hybride",
+        "electrique",
+        "gpl",
+        "gnv"
+      ],
+      "required": true
+    },
+    "cylindree": {
+      "type": "string"
+    },
+    "puissance": {
+      "type": "string"
+    },
+    "vin": {
+      "type": "string",
+      "description": "Numéro d'identification du véhicule (NIV/VIN)"
+    },
+    "client": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::client.client",
+      "inversedBy": "voitures"
+    },
+    "reservations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::rendez-vous.rendez-vous",
+      "mappedBy": "voiture"
+    },
+    "interventions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::intervention.intervention",
+      "mappedBy": "voiture"
+    }
+  }
+}
